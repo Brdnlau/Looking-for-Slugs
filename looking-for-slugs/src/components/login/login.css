@@ -1,0 +1,49 @@
+.username {
+  text-align: center;
+}
+.alignment {
+  text-align: center;
+  margin: auto;
+  width: 25%;
+  padding: 10px;
+  border-radius: 10%;
+  background-color: white;
+}
+
+.password {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.username_box {
+  padding: 10px;
+  border-radius: 10%;
+  border: none;
+  background-color: #eaeaea;
+}
+
+.password_box {
+  padding: 10px;
+  border-radius: 10%;
+  border: none;
+  background-color: #eaeaea;
+}
+
+.spacer {
+  padding-top: 33vh;
+  height: 100vh;
+  background-color: #8286ed;
+}
+
+.submit {
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 50px;
+  width: 8vw;
+  height: 5vh;
+  font-size: 15px;
+  background-color: #8286ed;
+  font-weight: 500;
+  color: white;
+  border: none;
+}
