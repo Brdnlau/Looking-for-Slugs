@@ -1,69 +1,43 @@
-import React, {useState} from 'react';
-import { Link } from 'react-router-dom';
-import customIcon from '../components/images/lfs.png'
-import './Navbar.css';
-import { Button } from './Button'
+import './Navbar.css'
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 
-
-function Navbar() {
-    const [click, setClick] = useState(false);
-    const [button, setButton] = useState(true)
-
-    const handleClick = () => setClick(!click)
-    const closeMobileMenu = () => setClick(false);
-
-    const showButton = () => {
-        if(window.innerWidth <= 960) {
-            setButton(false)
-        } else {
-            setButton(true);
-        }
-    };
-
-    window.addEventListener('resize', showButton);
+function NavbarForHome() {
   return (
-    <>
-        <nav className="navbar">
-            <div className='navbar-container'>
-                <Link to="/" className="navbar-logo">
-                    Looking for Slugs
-                    <span className='logo-icon'>
-                        <img 
-                            src={customIcon} 
-                            alt="CustomIcon" 
-                            style={{ width: '80px', height: 'auto' }}/>
-                    </span>
-                </Link>
-                <div className="menu-icon" onClick={handleClick}>
-                    <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
-                </div>
-                <ul className={click ? 'nav-menu active' : 'nav-menu'}>
-                    <li className='nav-item'>
-                        <Link to='/' className='nav-links' onClick={closeMobileMenu}>
-                            Home
-                        </Link>
-                    </li>
-                    <li className='nav-item'>
-                        <Link to='/Discover' className='nav-links' onClick={closeMobileMenu}>
-                            Discover
-                        </Link>
-                    </li>
-                    <li className='nav-item'>
-                        <Link to='/Create' className='nav-links' onClick={closeMobileMenu}>
-                            Create
-                        </Link>
-                    </li>
-                    <li className='nav-item'>
-                        <Link to='/About' className='nav-links' onClick={closeMobileMenu}>
-                            About
-                        </Link>
-                    </li>
-                </ul>
-                {button && <Button buttonStyle='btn--primary'>Login</Button>}
-            </div>
-        </nav>
-    </>
-  )
+    <div class = "spacing">
+      <Navbar collapseOnSelect expand="lg">
+          <Navbar.Brand href="#home">Looking For Slugs {' '}
+          <img
+                class = "logo_nav"
+                src={require("../components/images/lfs.png")}
+                width="60"
+                height="50"
+              />
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="me-auto">
+            </Nav>
+            <Nav>
+              <Nav.Link eventKey={2} href="#memes">
+                Home
+              </Nav.Link>
+              <Nav.Link eventKey={3} href="#memes">
+                Discover
+              </Nav.Link>
+              <Nav.Link eventKey={4} href="#memes">
+                Create
+              </Nav.Link>
+              <Nav.Link eventKey={5} href="#memes">
+                About
+              </Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+      </Navbar>
+    </div>
+  );
 }
 
-export default Navbar
+export default NavbarForHome;
