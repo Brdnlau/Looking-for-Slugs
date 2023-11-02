@@ -1,5 +1,4 @@
 import React from 'react';
-import Navbar from './Navbar';
 import customIcon from '../components/images/flippedLFS.png';
 import './HomePage.css';
 import LoginButton from './LoginButton';
@@ -10,7 +9,7 @@ function HomePage(){
         <div>
             <NavbarHome />
             <div className="split-parent">
-                <div className="split adBox">
+                <div className="split">
                     <h1>The New Best Way to Organize Pick-Up Sports</h1>
                     <div className="line"></div>
                     <p>Looking for Slugs (LFS) allows you to seamlessly view and create sport events. You can become an organizer and create and monitor your own events, or become 
