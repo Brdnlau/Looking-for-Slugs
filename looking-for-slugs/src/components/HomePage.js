@@ -3,11 +3,12 @@ import Navbar from './Navbar';
 import customIcon from '../components/images/flippedLFS.png';
 import './HomePage.css';
 import LoginButton from './LoginButton';
+import NavbarHome from './Navbar';
 
 function HomePage(){
     return (
         <div>
-            <Navbar />
+            <NavbarHome />
             <div className="split-parent">
                 <div className="split adBox">
                     <h1>The New Best Way to Organize Pick-Up Sports</h1>
