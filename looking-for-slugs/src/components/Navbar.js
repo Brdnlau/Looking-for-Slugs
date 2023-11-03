@@ -3,14 +3,15 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import LoginButton from './LoginButton';
 
 function NavbarForHome() {
   return (
-    <div class = "spacing">
+    <div className = "spacing">
       <Navbar collapseOnSelect expand="lg">
           <Navbar.Brand href="#home">Looking For Slugs {' '}
           <img
-                class = "logo_nav"
+                className = "logo_nav"
                 src={require("../components/images/lfs.png")}
                 width="60"
                 height="50"
@@ -33,6 +34,7 @@ function NavbarForHome() {
               <Nav.Link eventKey={5} href="#memes">
                 About
               </Nav.Link>
+              <LoginButton class="login-button" text="Login" />
             </Nav>
           </Navbar.Collapse>
       </Navbar>

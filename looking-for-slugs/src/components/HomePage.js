@@ -15,7 +15,7 @@ function HomePage(){
                     <p>Looking for Slugs (LFS) allows you to seamlessly view and create sport events. You can become an organizer and create and monitor your own events, or become 
                         an attendee, someone looking to get into a game. Getting people together to play has never been easier.
                     </p>
-                    <LoginButton class="loginbutton"/>
+                    <LoginButton class="loginbutton" text="Get Started" />
                 </div><div className="split">
                     <img src={customIcon} alt="Slug"></img>
                 </div>

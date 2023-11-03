@@ -27,3 +27,12 @@
 .navbar-nav{
     text-align: center;
 }
+
+.login-button {
+    background-color: #9bc400;
+    color: #442c34;
+    border-radius: 8%;
+    border: 0px;
+    padding: 0.2em 2em 0.2em 2em;
+    margin-left: 0.5em;
+}

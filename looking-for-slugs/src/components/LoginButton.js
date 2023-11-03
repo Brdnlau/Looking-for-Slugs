@@ -10,6 +10,6 @@ export default function LoginButton(props){
         console.log(result.user.displayName + " logged in successfully")
     }
     return (
-        <button className={props.class} onClick={handleGoogleLogin}>Register</button>
+        <button className={props.class} onClick={handleGoogleLogin}>{props.text}</button>
     );
 }
