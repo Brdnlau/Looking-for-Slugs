@@ -10,11 +10,20 @@
     padding-top: 5em;
 }
 
+.split:first-child {
+    margin-right: 20px;
+} 
+
+
 @media (max-width: 767px) {
     .split-parent {
         width: auto;
         flex-direction: column;
     }
+    .split:first-child {
+        margin-right: 0px;
+    } 
+    
 }
 
 .split h1{
@@ -41,10 +50,6 @@
     font-size:calc(10px + 1vw);
     padding-top: 1em;
 }
-
-.split:first-child {
-    margin-right: 20px;
-} 
 
 .loginbutton {
     display: flex;
