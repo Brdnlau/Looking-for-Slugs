@@ -15,6 +15,8 @@ function CreateEventModal() {
       event.stopPropagation();
     }else {
         setShow(false);
+        // Console Reporting - Push to database
+        console.log("Works");
     }
 
     setValidated(true);
