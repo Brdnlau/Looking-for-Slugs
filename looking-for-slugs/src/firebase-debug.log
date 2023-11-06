@@ -1,0 +1,49 @@
+[debug] [2023-11-01T00:13:43.481Z] ----------------------------------------------------------------------
+[debug] [2023-11-01T00:13:43.483Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2023-11-01T00:13:43.484Z] CLI Version:   12.7.0
+[debug] [2023-11-01T00:13:43.484Z] Platform:      darwin
+[debug] [2023-11-01T00:13:43.484Z] Node Version:  v18.18.2
+[debug] [2023-11-01T00:13:43.486Z] Time:          Tue Oct 31 2023 17:13:43 GMT-0700 (Pacific Daylight Time)
+[debug] [2023-11-01T00:13:43.486Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-11-01T00:13:43.490Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2023-11-01T00:13:43.633Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-11-01T00:13:43.633Z] > authorizing via signed-in user (gpasko@ucsc.edu)
+[debug] [2023-11-01T00:13:43.633Z] [iam] checking project lookingforslugs-67b9c for permissions ["firebase.projects.get"]
+[debug] [2023-11-01T00:13:43.634Z] > refreshing access token with scopes: []
+[debug] [2023-11-01T00:13:43.636Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-11-01T00:13:43.636Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-11-01T00:13:43.804Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2023-11-01T00:13:43.804Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2023-11-01T00:13:43.867Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2023-11-01T00:13:43.867Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-11-01T00:13:43.967Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/lookingforslugs-67b9c:testIamPermissions [none]
+[debug] [2023-11-01T00:13:43.967Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/lookingforslugs-67b9c:testIamPermissions x-goog-quota-user=projects/lookingforslugs-67b9c
+[debug] [2023-11-01T00:13:43.967Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/lookingforslugs-67b9c:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2023-11-01T00:13:44.272Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/lookingforslugs-67b9c:testIamPermissions 200
+[debug] [2023-11-01T00:13:44.272Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/lookingforslugs-67b9c:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2023-11-01T00:13:44.273Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/lookingforslugs-67b9c [none]
+[debug] [2023-11-01T00:13:44.549Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/lookingforslugs-67b9c 200
+[debug] [2023-11-01T00:13:44.549Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/lookingforslugs-67b9c {"projectId":"lookingforslugs-67b9c","projectNumber":"774728549815","displayName":"LookingForSlugs","name":"projects/lookingforslugs-67b9c","resources":{"hostingSite":"lookingforslugs-67b9c"},"state":"ACTIVE","etag":"1_6b3be5f1-b09c-47c7-aba9-b56e9dce103e"}
+[info] 
+[info] === Serving from '/Users/granger/Desktop/CSE115/Looking-for-Slugs/Firebase'...
+[info] 
+[debug] [2023-11-01T00:13:44.552Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/lookingforslugs-67b9c/sites 
+[debug] [2023-11-01T00:13:45.190Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/lookingforslugs-67b9c/sites 200
+[debug] [2023-11-01T00:13:45.190Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/lookingforslugs-67b9c/sites {"sites":[{"name":"projects/lookingforslugs-67b9c/sites/lookingforslugs-67b9c","defaultUrl":"https://lookingforslugs-67b9c.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2023-11-01T00:13:45.191Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/lookingforslugs-67b9c/webApps/-/config [none]
+[debug] [2023-11-01T00:13:45.622Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/lookingforslugs-67b9c/webApps/-/config 200
+[debug] [2023-11-01T00:13:45.622Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/lookingforslugs-67b9c/webApps/-/config {"projectId":"lookingforslugs-67b9c","appId":"1:774728549815:web:b5408c12ec6e5e78f8d432","storageBucket":"lookingforslugs-67b9c.appspot.com","apiKey":"AIzaSyBmzIYxSheADRsRyc5oKq3v35mAXhATAKA","authDomain":"lookingforslugs-67b9c.firebaseapp.com","messagingSenderId":"774728549815","measurementId":"G-NEMNKT1JZD"}
+[debug] [2023-11-01T00:13:45.662Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/lookingforslugs-67b9c [none]
+[debug] [2023-11-01T00:13:45.981Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/lookingforslugs-67b9c 200
+[debug] [2023-11-01T00:13:45.981Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/lookingforslugs-67b9c {"projectId":"lookingforslugs-67b9c","projectNumber":"774728549815","displayName":"LookingForSlugs","name":"projects/lookingforslugs-67b9c","resources":{"hostingSite":"lookingforslugs-67b9c"},"state":"ACTIVE","etag":"1_6b3be5f1-b09c-47c7-aba9-b56e9dce103e"}
+[info] i  hosting[lookingforslugs-67b9c]: Serving hosting files from: public {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mpublic\u001b[22m"}}
+[info] ✔  hosting[lookingforslugs-67b9c]: Local server: http://localhost:5002 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://localhost:5002\u001b[22m\u001b[24m"}}
+[info] i  hosting: ::1 - - [01/Nov/2023:00:13:52 +0000] "GET / HTTP/1.1" 200 - "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"::1 - - [01/Nov/2023:00:13:52 +0000] \"GET / HTTP/1.1\" 200 - \"-\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36\""}}
+[info] i  hosting: ::1 - - [01/Nov/2023:00:13:52 +0000] "GET /app.js HTTP/1.1" 200 - "http://localhost:5002/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"::1 - - [01/Nov/2023:00:13:52 +0000] \"GET /app.js HTTP/1.1\" 200 - \"http://localhost:5002/\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36\""}}
+[info] i  hosting: ::1 - - [01/Nov/2023:00:13:52 +0000] "GET /__/firebase/init.js?useEmulator=true HTTP/1.1" 200 - "http://localhost:5002/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"::1 - - [01/Nov/2023:00:13:52 +0000] \"GET /__/firebase/init.js?useEmulator=true HTTP/1.1\" 200 - \"http://localhost:5002/\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36\""}}
+[info] i  hosting: ::1 - - [01/Nov/2023:00:13:52 +0000] "GET /favicon.ico HTTP/1.1" 200 - "http://localhost:5002/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"::1 - - [01/Nov/2023:00:13:52 +0000] \"GET /favicon.ico HTTP/1.1\" 200 - \"http://localhost:5002/\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36\""}}
+[debug] [2023-11-01T00:13:56.431Z] >>> [apiv2][query] GET https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore-compat.js.map [none]
+[debug] [2023-11-01T00:13:56.905Z] <<< [apiv2][status] GET https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore-compat.js.map 200
+[debug] [2023-11-01T00:13:56.905Z] <<< [apiv2][body] GET https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore-compat.js.map [stream]
+[info] i  hosting: ::1 - - [01/Nov/2023:00:13:57 +0000] "GET /__/firebase/10.5.0/firebase-firestore-compat.js.map HTTP/1.1" 200 767644 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"::1 - - [01/Nov/2023:00:13:57 +0000] \"GET /__/firebase/10.5.0/firebase-firestore-compat.js.map HTTP/1.1\" 200 767644 \"-\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36\""}}
