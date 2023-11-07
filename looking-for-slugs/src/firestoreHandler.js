@@ -33,7 +33,6 @@ function firestorePullEvents(){
             firestoreEvents.push([doc.data().title, doc.data().time, doc.data().location, doc.data().description])
         })
     });
-    console.log(firestoreEvents)
     return firestoreEvents;
 }
 

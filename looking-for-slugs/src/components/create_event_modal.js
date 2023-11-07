@@ -2,7 +2,6 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-import {firestoreCreateEvent, firestorePullEvents} from '../firestoreHandler'
 
 
 function CreateEventModal(props) {
@@ -17,7 +16,6 @@ function CreateEventModal(props) {
     }else {
         setShow(false);
         firestoreCreateEvent(document.querySelector("#title").value, document.querySelector("#time").value, document.querySelector("#location").value, document.querySelector("#description").value);
-        var firestoreList = firestorePullEvents(); // List of all events in firestores
         console.log("Submitted event to Firestore");
     }
 

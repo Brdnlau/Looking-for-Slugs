@@ -5,37 +5,25 @@ import Box from './Box';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import CreateEventModal from './create_event_modal';
+import { firestorePullEvents } from '../firestoreHandler';
 
 
 function Discover(){
-    const [boxes, setBoxes] = useState([]);
-    const [title, setTitle] = useState('');
-    const [time, setTime] = useState('');
-    const [location, setlocation] = useState('');
-    const [content, setContent] = useState('');
+    const firestoreList = firestorePullEvents();
+    const [allEvents, setAllEvents] = useState();
 
-    const addBox = () => {
-        if (title && time && location && content) {
-            const newBox = {
-                title: title,
-                time: time,
-                location: location,
-                content: content,
-            };
-            setBoxes([...boxes, newBox]);
-            setTitle('');
-            setTime('');
-            setlocation('');
-            setContent('');
-        }
-    }
-
-    const removeBox = (index) => {
-        const newBoxes = [...boxes];
-        newBoxes.splice(index, 1);
-        setBoxes(newBoxes);
-    }
-
+    setTimeout(() => {
+        setAllEvents(firestoreList.map((events) => 
+            <Col sm={3}> 
+                <Box
+                    title={events[0]}
+                    time={events[1]}
+                    location={events[2]}
+                    content={events[3]}
+                ></Box>
+                </Col>
+            ))
+    }, 1000);
     return (
         <div>
             <NavbarHome/>
@@ -44,46 +32,9 @@ function Discover(){
                 <button className="filter">Filter</button>
                 <CreateEventModal class="create-button"/>
             </div>
-            <div className="box-input">
-                <input
-                    type="text"
-                    placeholder="Title"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                />
-                <input
-                    type="text"
-                    placeholder="Time"
-                    value={time}
-                    onChange={(e) => setTime(e.target.value)}
-                />
-                <input
-                    type="text"
-                    placeholder="Location"
-                    value={location}
-                    onChange={(e) => setlocation(e.target.value)}
-                />
-                <input
-                    type="text"
-                    placeholder="Content"
-                    value={content}
-                    onChange={(e) => setContent(e.target.value)}
-                />
-                <button onClick={addBox}>Add Box</button>
-            </div>
             <div className="boxes">
                 <Row>
-                    {boxes.map((box, index) => ( 
-                    <Col sm={3}> 
-                    <Box
-                        key={index}
-                        title={box.title}
-                        time={box.time}
-                        location={box.location}
-                        content={box.content}
-                        onRemove={() => removeBox(index)}
-                    />
-                    </Col>))}
+                    {allEvents}
                 </Row>
             </div>
         </div>
