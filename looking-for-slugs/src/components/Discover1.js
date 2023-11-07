@@ -42,8 +42,8 @@ function Discover(){
             <div className="Discover_txt">
                 <h1>Discover</h1>
                 <button className="filter">Filter</button>
+                <CreateEventModal class="create-button"/>
             </div>
-            <CreateEventModal class="create-button"/>
             <div className="box-input">
                 <input
                     type="text"

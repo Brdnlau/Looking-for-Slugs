@@ -36,3 +36,14 @@
     padding: 0.2em 2em 0.2em 2em;
     margin-left: 0.5em;
 }
+
+.event_creation_button{
+    border: 0px;
+    background: #fff5d7;
+    color: var(--bs-nav-link-color);
+    font-weight: var(--bs-nav-link-font-weight);
+}
+
+.event_creation_button:hover{
+    text-decoration: underline;
+}

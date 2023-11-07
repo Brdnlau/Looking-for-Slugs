@@ -44,5 +44,10 @@
 }
 
 .create-button {
-    border: 0px;
+    background-color: #9bc400;
+    border: 1px solid #442c34;
+    margin: 12px 0 0 10px;
+    font-family: "Habibi";
+    height: 30px;
+    font-size: 17px;
 }

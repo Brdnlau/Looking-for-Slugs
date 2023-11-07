@@ -30,7 +30,7 @@ function NavbarForHome() {
               <Nav.Link eventKey={3} as={Link} to="/discover">
                 Discover
               </Nav.Link>
-              <CreateEventModal/>
+              <CreateEventModal class = "event_creation_button"/>
               <Nav.Link eventKey={5} href="#memes">
                 About
               </Nav.Link>
