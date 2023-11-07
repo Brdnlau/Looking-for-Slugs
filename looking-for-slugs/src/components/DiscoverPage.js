@@ -10,7 +10,7 @@ import { firestorePullEvents } from '../firestoreHandler';
 
 function Discover(){
     const firestoreList = firestorePullEvents();
-    const [allEvents, setAllEvents] = useState();
+    const [allEvents, setAllEvents] = useState(<div></div>);
 
     setTimeout(() => {
         setAllEvents(firestoreList.map((events) => 

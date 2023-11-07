@@ -8,7 +8,6 @@ function Box(thing) {
             <h2 className='time'>Time: {thing.time}</h2>
             <h2>Location: {thing.location}</h2>
             <p>Description: {thing.content}</p>
-            <button onClick={thing.onRemove}>remove</button>
         </div>
     );
 }

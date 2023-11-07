@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import {firestoreCreateEvent} from '../firestoreHandler'
 
 
 function CreateEventModal(props) {
