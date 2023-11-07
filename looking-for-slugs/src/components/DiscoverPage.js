@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Discover1.css';
+import './DiscoverPage.css';
 import NavbarHome from './Navbar';
 import Box from './Box';
 import Row from 'react-bootstrap/Row';

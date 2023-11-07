@@ -10,7 +10,7 @@ import {
 
 import HomePage from './components/HomePage';
 import Dashboard from './components/DashBoard';
-import Discovery from './components/Discover1';
+import Discovery from './components/DiscoverPage';
 
 
 
