@@ -3,8 +3,17 @@ import customIcon from '../components/images/flippedLFS.png';
 import './HomePage.css';
 import LoginButton from './LoginButton';
 import NavbarHome from './Navbar';
+import { auth } from "../firebase"
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useNavigate } from "react-router-dom";
 
 function HomePage(){
+    const [user, loading, error] = useAuthState(auth);
+    const navigate = useNavigate();
+    if (user) {
+        navigate("/dashboard");
+    }
+    
     return (
         <div>
             <NavbarHome />

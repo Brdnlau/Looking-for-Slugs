@@ -4,6 +4,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import LoginButton from './LoginButton';
+import {Link} from 'react-router-dom';
 
 function NavbarForHome() {
   return (
@@ -22,10 +23,10 @@ function NavbarForHome() {
             <Nav className="me-auto">
             </Nav>
             <Nav>
-              <Nav.Link eventKey={2} href="#memes">
+            <Nav.Link eventKey={2} as={Link} to="/">
                 Home
               </Nav.Link>
-              <Nav.Link eventKey={3} href="#memes">
+              <Nav.Link eventKey={3} as={Link} to="/discover">
                 Discover
               </Nav.Link>
               <Nav.Link eventKey={4} href="#memes">

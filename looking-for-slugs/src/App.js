@@ -1,13 +1,29 @@
 import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+
 import HomePage from './components/HomePage';
+import Dashboard from './components/DashBoard';
+import Discovery from './components/Discover1';
 
 
 
 function App() {
   return (
-    <HomePage />
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage/>} />
+        <Route path="/dashboard" element={<Dashboard/>} />
+        <Route path="/discover" element={<Discovery/>} />
+      </Routes>
+    </Router>
+    //<HomePage />
   );
 }
 
