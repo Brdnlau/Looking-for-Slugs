@@ -5,6 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import LoginButton from './LoginButton';
 import {Link} from 'react-router-dom';
+import CreateEventModal from './create_event_modal';
 
 function NavbarForHome() {
   return (
@@ -29,9 +30,7 @@ function NavbarForHome() {
               <Nav.Link eventKey={3} as={Link} to="/discover">
                 Discover
               </Nav.Link>
-              <Nav.Link eventKey={4} href="#memes">
-                Create
-              </Nav.Link>
+              <CreateEventModal/>
               <Nav.Link eventKey={5} href="#memes">
                 About
               </Nav.Link>

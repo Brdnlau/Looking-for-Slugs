@@ -2,9 +2,10 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import {firestoreCreateEvent} from '../firestoreHandler'
 
 
-function CreateEventModal() {
+function CreateEventModal(props) {
   const [show, setShow] = useState(false);
   const [validated, setValidated] = useState(false);
 
@@ -15,8 +16,8 @@ function CreateEventModal() {
       event.stopPropagation();
     }else {
         setShow(false);
-        // Console Reporting - Push to database
-        console.log("Works");
+        firestoreCreateEvent(document.querySelector("#title").value, document.querySelector("#time").value, document.querySelector("#location").value, document.querySelector("#description").value);
+        console.log("Submitted event to Firestore");
     }
 
     setValidated(true);
@@ -26,7 +27,7 @@ function CreateEventModal() {
 
   return (
     <>
-      <button class = "button_color" onClick={handleShow}>
+      <button className={props.class} onClick={handleShow}>
         Create Event
       </button>
 
@@ -36,7 +37,7 @@ function CreateEventModal() {
         </Modal.Header>
         <Modal.Body>
             <Form noValidate validated={validated} id="event_form" onSubmit={handleSubmit}>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                <Form.Group className="mb-3" controlId="title">
                     <Form.Label>Name</Form.Label>
                     <Form.Control
                         required
@@ -48,7 +49,7 @@ function CreateEventModal() {
                         Please choose a name.
                     </Form.Control.Feedback>
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                <Form.Group className="mb-3" controlId="time">
                     <Form.Label>Time</Form.Label>
                     <Form.Control
                         required
@@ -60,7 +61,7 @@ function CreateEventModal() {
                         Please select a time.
                     </Form.Control.Feedback>
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                <Form.Group className="mb-3" controlId="location">
                     <Form.Label>Location</Form.Label>
                     <Form.Control
                         required
@@ -74,7 +75,7 @@ function CreateEventModal() {
                 <Form.Group
                 required
                 className="mb-3"
-                controlId="exampleForm.ControlTextarea1"
+                controlId="description"
                 >
                     <Form.Label>Activity</Form.Label>
                     <Form.Control as="textarea" rows={2} required/>

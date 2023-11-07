@@ -4,8 +4,7 @@ import NavbarHome from './Navbar';
 import Box from './Box';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-
-
+import CreateEventModal from './create_event_modal';
 
 
 function Discover(){
@@ -44,6 +43,7 @@ function Discover(){
                 <h1>Discover</h1>
                 <button className="filter">Filter</button>
             </div>
+            <CreateEventModal class="create-button"/>
             <div className="box-input">
                 <input
                     type="text"
