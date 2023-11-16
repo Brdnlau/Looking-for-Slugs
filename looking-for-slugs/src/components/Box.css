@@ -1,11 +1,10 @@
 .box {
-    background-color: #9bc400;
-    border: 1px solid #442c34;
     margin-top: 1vh;
-    word-wrap: break-word;
     margin-bottom: 2vh;
-    border-radius: 5%;
-    text-align: center;
+}
+.margins{
+    margin-top: 1vh;
+    margin-bottom: 2vh;
 }
 
 .box-input {
@@ -14,4 +13,25 @@
 
 .time {
     font-family: "Times";
+    padding-bottom: -10px;
+}
+
+.top_section{
+    position: relative;
+}
+
+.top_section button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.top_section span {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+
+.bold{
+    font-weight: bold;
 }

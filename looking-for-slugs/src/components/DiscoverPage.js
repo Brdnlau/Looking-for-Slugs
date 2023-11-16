@@ -14,7 +14,7 @@ function Discover(){
 
     setTimeout(() => {
         setAllEvents(firestoreList.map((events) => 
-            <Col sm={3}> 
+            <Col sm={4}> 
                 <Box
                     title={events[0]}
                     time={events[1]}
