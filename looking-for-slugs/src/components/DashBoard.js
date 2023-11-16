@@ -15,10 +15,22 @@ export default function Dashboard() {
             navigate("/");
       }, [user, loading, navigate, error]);
     return (
-        <div>
+        <>
+        {user === null ? 
+        <>
+            <div>
+                <NavbarForHome/>
+                </div>
+        </>:
+        <>
+            <div>
             <NavbarForHome/>
-            <h1>Welcome, {user.displayName}!</h1>
+            {user.displayName && user.displayName.trim() !== '' && 
+                <h1>Welcome, {user.displayName}!</h1>}
             <LogOut/>
-        </div>
+            </div>
+        </>
+        }
+        </>
     );
 }
