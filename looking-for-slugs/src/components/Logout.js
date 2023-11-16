@@ -1,8 +1,12 @@
 import React from "react";
 import { auth } from "../firebase"
 import { signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import Button from 'react-bootstrap/Button';
+
 
 export default function LogOut(props){
+    const navigate = useNavigate();
     const handleLogOut = () => {
         try {
             signOut(auth);
@@ -12,6 +16,6 @@ export default function LogOut(props){
         
     }
     return (
-        <button onClick={handleLogOut}>LogOut</button>
+        <Button variant="light" onClick={handleLogOut}>LogOut</Button>
     );
 }

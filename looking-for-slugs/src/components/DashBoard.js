@@ -3,6 +3,7 @@ import { auth } from "../firebase"
 import { useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 
+import Profile from "./Profile";
 import NavbarForHome from "./Navbar";
 import LogOut from "./Logout";
 
@@ -20,14 +21,13 @@ export default function Dashboard() {
         <>
             <div>
                 <NavbarForHome/>
-                </div>
+            </div>
         </>:
         <>
             <div>
-            <NavbarForHome/>
-            {user.displayName && user.displayName.trim() !== '' && 
-                <h1>Welcome, {user.displayName}!</h1>}
-            <LogOut/>
+                <NavbarForHome/>
+                <Profile user={user}/>
+                <LogOut/>
             </div>
         </>
         }
