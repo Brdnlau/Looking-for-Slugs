@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './DiscoverPage.css';
 import NavbarHome from './Navbar';
 import Box from './Box';
@@ -9,21 +9,28 @@ import { firestorePullEvents } from '../firestoreHandler';
 
 
 function Discover(){
-    const firestoreList = firestorePullEvents();
-    const [allEvents, setAllEvents] = useState(<div></div>);
+    const [eventsList, setEventsList] = useState("LOADING EVENTS");
 
-    setTimeout(() => {
-        setAllEvents(firestoreList.map((events) => 
-            <Col sm={4}> 
+    useEffect(() => {
+        const fetchData = async () => {
+            return await firestorePullEvents();
+        }
+        
+        fetchData()
+        .then((firestoreAllEvents) => {
+            setEventsList(firestoreAllEvents.map((events) => 
+            <Col sm={3}> 
                 <Box
                     title={events[0]}
                     time={events[1]}
                     location={events[2]}
                     content={events[3]}
                 ></Box>
-                </Col>
-            ))
-    }, 1000);
+            </Col>))
+        });
+
+    }, []);
+
     return (
         <div>
             <NavbarHome/>
@@ -34,7 +41,7 @@ function Discover(){
             </div>
             <div className="boxes">
                 <Row>
-                    {allEvents}
+                    {eventsList}
                 </Row>
             </div>
         </div>
