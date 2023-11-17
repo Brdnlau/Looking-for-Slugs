@@ -28,7 +28,7 @@ function firestoreCreateEvent(eventTitle, eventTime, eventLocation, eventDescrip
     }
 }
 
-async function firestorePullEvents(){
+/*async function firestorePullEvents(){
     // pulling from database (THIS PROBABLY DOESNT WORK DONT CALL IT YET!!!)
     var firestoreEvents = []
     const querySnapshot = await getDocs(collection(db, "eventPosts"))
@@ -39,6 +39,23 @@ async function firestorePullEvents(){
         })
     });
     return firestoreEvents;
+}*/ 
+
+async function firestorePullEvents() {
+    try{
+        const eventsCollection = collection(db, 'eventPosts');
+        const querySnapshot = await getDocs(eventsCollection);
+        const firestoreEvents = [];
+        querySnapshot.forEach(doc => {
+            const event = {id:doc.id, ...doc.data()};
+            firestoreEvents.push(event);
+        });
+        return firestoreEvents;
+    }
+    catch (e) {
+        console.error("Error fetching events:",e);
+        return [];
+    }
 }
 
 
@@ -113,8 +130,13 @@ async function firestoreAddUserToEvent(userId, eventId) {
 async function fireStoreDeleteEvent(eventId){
     try {
         const eventRef = doc(db, 'eventPosts', eventId);
-        await deleteDoc(eventRef);
-        console.log("Document with ID", eventId, "has been deleted.");
+        const eventDoc = await getDoc(eventRef);
+        if (eventDoc.exists()) {
+            await deleteDoc(eventRef);
+            console.log("Document with ID", eventId, "has been deleted.");
+        } else {
+            console.log("Event ", eventId, " does not exist.");
+        }
     } catch(e) {
         console.error("Error deleting document: ",e);
     }
