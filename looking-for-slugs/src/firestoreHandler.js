@@ -1,5 +1,5 @@
 import firebase from "firebase/app";
-import { getFirestore, addDoc, collection, getDocs } from 'firebase/firestore';
+import { getFirestore, doc, addDoc, deleteDoc, collection, getDocs } from 'firebase/firestore';
 import { app, db } from "./firebase.js";
 
 function firestoreCreateEvent(eventTitle, eventTime, eventLocation, eventDescription) {
@@ -37,6 +37,8 @@ async function firestorePullEvents(){
     return firestoreEvents;
 }
 
+// Send this function an eventId and it will be deleted from Firebase. 
+// After implemented users collections, need to add logic to remove from every users created and joined events!
 async function fireStoreDeleteEvent(eventId){
     try {
         const eventRef = doc(db, 'eventPosts', eventId);
@@ -47,8 +49,11 @@ async function fireStoreDeleteEvent(eventId){
     }
 }
 
-async function firestorePullUserInfo(){
-
-}
+// Making a way to pull both created events and joined events by a user.
+/*async function firestorePullUserInfo(userId){
+    try{
+        const userRef = doc(db, 'users', userId)
+    }
+} */
 
 export {firestoreCreateEvent, firestorePullEvents, fireStoreDeleteEvent}
