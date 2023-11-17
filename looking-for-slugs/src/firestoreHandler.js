@@ -1,6 +1,7 @@
 import firebase from "firebase/app";
 import { getFirestore, addDoc, collection, getDocs } from 'firebase/firestore';
 import { app, db } from "./firebase.js";
+
 function firestoreCreateEvent(eventTitle, eventTime, eventLocation, eventDescription) {
     //granger
     try{
@@ -23,10 +24,10 @@ function firestoreCreateEvent(eventTitle, eventTime, eventLocation, eventDescrip
     }
 }
 
-function firestorePullEvents(){
+async function firestorePullEvents(){
     // pulling from database (THIS PROBABLY DOESNT WORK DONT CALL IT YET!!!)
     var firestoreEvents = []
-    const querySnapshot = getDocs(collection(db, "eventPosts"))
+    const querySnapshot = await getDocs(collection(db, "eventPosts"))
     .then(querySnapshot =>{
         querySnapshot.forEach((doc) => {
             // console.log(doc.data().title, doc.data().time, doc.data().location, doc.data().description)
