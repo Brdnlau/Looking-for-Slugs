@@ -132,8 +132,13 @@ async function firestoreAddUserToEvent(userId, eventId) {
 async function fireStoreDeleteEvent(eventId){
     try {
         const eventRef = doc(db, 'eventPosts', eventId);
-        await deleteDoc(eventRef);
-        console.log("Document with ID", eventId, "has been deleted.");
+        const eventDoc = await getDoc(eventRef);
+        if (eventDoc.exists()) {
+            await deleteDoc(eventRef);
+            console.log("Document with ID", eventId, "has been deleted.");
+        } else {
+            console.log("Event ", eventId, " does not exist.");
+        }
     } catch(e) {
         console.error("Error deleting document: ",e);
     }
