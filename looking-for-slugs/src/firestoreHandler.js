@@ -45,7 +45,7 @@ function firestoreCreateEvent(eventTitle, eventTime, eventLocation, eventDescrip
 async function firestorePullEvents() {
     try{
         const eventsCollection = collection(db, 'eventPosts');
-        const querySnapshot = await getDocs(eventCollections);
+        const querySnapshot = await getDocs(eventsCollection);
         const firestoreEvents = [];
         querySnapshot.forEach(doc => {
             const event = {id:doc.id, ...doc.data()};
