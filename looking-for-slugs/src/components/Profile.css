@@ -10,10 +10,16 @@
     text-align: center;
 }
 
-.profile_div{
-    margin-left: 20px;
-}
-
 .center{
     text-align: center;
+}
+
+.Rows h1 {
+    border-bottom: 2px solid #442c34;
+    padding-bottom: 5px;
+}
+
+.Rows {
+    margin-left: 20px;
+    margin-right: 20px;
 }

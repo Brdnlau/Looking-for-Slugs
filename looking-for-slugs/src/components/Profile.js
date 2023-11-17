@@ -3,13 +3,17 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/esm/Row';
 import './Profile.css'
 import Card from 'react-bootstrap/Card';
+import Box from './Box.js';
+import Logout from "./Logout";
+import ListGroup from 'react-bootstrap/ListGroup';
 
 export default function Profile(props) {
   const user = props.user
   return (
-    <Row>
+    <Row className='Rows'>
         <Col sm={4}>
             <div class = "profile_div">
+                <h1>Profile</h1>
                 <Card>
                     <Card.Img class = "profile_pic" src={user.photoURL} />
                     <Card.Body>
@@ -19,7 +23,18 @@ export default function Profile(props) {
                 </Card>
             </div>
         </Col>
-        <Col sm={8}>
+        <Col sm={4}>
+            <div class = "Joined">
+                <h1>Joined Events</h1>
+            </div>
+            <Box/>
+            <Box/>
+        </Col>
+        <Col sm={4}>
+            <div class = "Created">
+                <h1>Created Events</h1>
+            </div>
+            <Box/>
         </Col>
     </Row>
   )
