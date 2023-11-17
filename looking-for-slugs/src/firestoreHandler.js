@@ -1,7 +1,7 @@
 import firebase from "firebase/app";
 import { auth } from "./firebase"
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { getFirestore, doc, addDoc, deleteDoc, collection, getDocs, getDoc, updateDoc } from 'firebase/firestore';
+import { getFirestore, doc, addDoc, deleteDoc, collection, getDocs, getDoc, updateDoc, setDoc } from 'firebase/firestore';
 import { app, db } from "./firebase.js";
 
 function firestoreCreateEvent(eventTitle, eventTime, eventLocation, eventDescription, creatorId) { // Added creatorId field to store eventcreator Id.
@@ -148,8 +148,15 @@ async function signIn() {
     try {
         const result = await signInWithPopup(auth, provider);
         console.log(result.user.displayName + " logged in successfully")
-        // addDoc here
-        // result.uid is the user id
+        const userId = result.user.uid; 
+        const userRef = doc(db, 'users', userId);
+        const userDoc = await getDoc(userRef);
+        if (!userDoc.exists()) {
+            await setDoc(userRef, {userId});
+            console.log("Added ", userId, " to user collection.");
+        } else{
+            console.log("User ", userId, " already exists in collection.");
+        }
     } catch(e) {
         console.error(e);
     }
