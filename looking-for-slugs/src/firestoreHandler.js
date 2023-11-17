@@ -29,7 +29,7 @@ function firestoreCreateEvent(eventTitle, eventTime, eventLocation, eventDescrip
 
 
 
-async function firestorePullEvents(){
+/*async function firestorePullEvents(){
     // pulling from database (THIS PROBABLY DOESNT WORK DONT CALL IT YET!!!)
     var firestoreEvents = []
     const querySnapshot = await getDocs(collection(db, "eventPosts"))
@@ -40,6 +40,23 @@ async function firestorePullEvents(){
         })
     });
     return firestoreEvents;
+}*/ 
+
+async function firestorePullEvents() {
+    try{
+        const eventsCollection = collection(db, 'eventPosts');
+        const querySnapshot = await getDocs(eventCollections);
+        const firestoreEvents = [];
+        querySnapshot.forEach(doc => {
+            const event = {id:doc.id, ...doc.data()};
+            firestoreEvents.push(event);
+        });
+        return firestoreEvents;
+    }
+    catch (e) {
+        console.error("Error fetching events:",e);
+        return [];
+    }
 }
 
 
