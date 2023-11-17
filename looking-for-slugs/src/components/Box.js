@@ -7,14 +7,18 @@ import Badge from 'react-bootstrap/Badge';
 
 
 function Box(props) {
+    function handleClick() {
+        props.buttonClick(props.id);
+    }
+
     return (
         <div class = "margins">
             <Card>
                 <div class = "top_section">
                     <Card.Img variant="top" class = "top_image" src={fillerImage} />
-                    <Button variant="light" onClick={props.buttonClick}>{props.buttonText}</Button>{' '}
+                    <Button variant="light" onClick={handleClick}>{props.buttonText}</Button>{' '}
                     <Badge pill bg="light" text="dark">
-                        - / 30
+                        {props.memberCount} / 30
                     </Badge>
                 </div>
                 <Card.Body>

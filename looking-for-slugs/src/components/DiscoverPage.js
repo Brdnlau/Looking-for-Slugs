@@ -13,11 +13,11 @@ function Discover(){
     const [user, loading, error] = useAuthState(auth);
     const [eventsList, setEventsList] = useState("LOADING EVENTS");
 
-    function handleJoinEvent() {
+    function handleJoinEvent(docID) {
         if (!user) {
             signIn();
         } else {
-            //firestoreAddUserToEvent(user.uid, );
+            firestoreAddUserToEvent(user.uid, docID);
         }
     }
 
@@ -30,11 +30,12 @@ function Discover(){
         .then((firestoreAllEvents) => {
             setEventsList(firestoreAllEvents.map((events) => 
             <Col sm={3}> 
-                <Box id="1234" buttonClick={handleJoinEvent} buttonText="Join"
-                    title={events[0]}
-                    time={events[1]}
-                    location={events[2]}
-                    content={events[3]}
+                <Box id={events.id} buttonClick={handleJoinEvent} buttonText="Join"
+                    title={events.title}
+                    time={events.time}
+                    location={events.location}
+                    content={events.description}
+                    memberCount={events.joined.length}
                 ></Box>
             </Col>))
         });

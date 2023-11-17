@@ -3,11 +3,14 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import {firestoreCreateEvent} from '../firestoreHandler'
+import { auth } from "../firebase"
+import { useAuthState } from "react-firebase-hooks/auth";
 
 
 function CreateEventModal(props) {
   const [show, setShow] = useState(false);
   const [validated, setValidated] = useState(false);
+  const [user, loading, error] = useAuthState(auth);
 
   const handleSubmit = (event) => {
     const form = document.querySelector("#event_form");
@@ -16,7 +19,7 @@ function CreateEventModal(props) {
       event.stopPropagation();
     }else {
         setShow(false);
-        firestoreCreateEvent(document.querySelector("#title").value, document.querySelector("#time").value, document.querySelector("#location").value, document.querySelector("#description").value);
+        firestoreCreateEvent(document.querySelector("#title").value, document.querySelector("#time").value, document.querySelector("#location").value, document.querySelector("#description").value, user.uid);
         console.log("Submitted event to Firestore");
     }
 
