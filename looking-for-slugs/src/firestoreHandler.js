@@ -4,7 +4,7 @@ import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { getFirestore, doc, addDoc, deleteDoc, collection, getDocs, getDoc, updateDoc, setDoc } from 'firebase/firestore';
 import { app, db } from "./firebase.js";
 
-function firestoreCreateEvent(eventTitle, eventTime, eventLocation, eventDescription, creatorId) { // Added creatorId field to store eventcreator Id.
+async function firestoreCreateEvent(eventTitle, eventTime, eventLocation, eventDescription, creatorId) { // Added creatorId field to store eventcreator Id.
     //granger
     try{
         console.log("Firestore: ", db);
@@ -22,6 +22,17 @@ function firestoreCreateEvent(eventTitle, eventTime, eventLocation, eventDescrip
             joined: []  // added later - array of users who have joined, not including the creator.           
         });
         console.log("Document written with title: ", eventTitle);
+        const userRef = doc(db, 'users', creatorId);
+        const userDoc = await getDoc(userRef);
+        if (userDoc.exists()) {
+            const userData = userDoc.data();
+            const updatedEvents = userData.createdEvents; 
+            updatedEvents.push(docRef.id);
+            await setDoc(userRef, {createdEvents: updatedEvents});
+            console.log("Added event ", docRef.id, " to ", creatorId, " createdEvents array.");
+        } else {
+            console.log("Creator's document has not been created yet.");
+        }
     }
     catch(e){
         console.error("Error adding Document: ", e);
