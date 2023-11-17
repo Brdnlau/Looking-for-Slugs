@@ -37,4 +37,18 @@ async function firestorePullEvents(){
     return firestoreEvents;
 }
 
-export {firestoreCreateEvent, firestorePullEvents}
+async function fireStoreDeleteEvent(eventId){
+    try {
+        const eventRef = doc(db, 'eventPosts', eventId);
+        await deleteDoc(eventRef);
+        console.log("Document with ID", eventId, "has been deleted.");
+    } catch(e) {
+        console.error("Error deleting document: ",e);
+    }
+}
+
+async function firestorePullUserInfo(){
+
+}
+
+export {firestoreCreateEvent, firestorePullEvents, fireStoreDeleteEvent}
