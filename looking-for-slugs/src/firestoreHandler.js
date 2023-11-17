@@ -152,7 +152,11 @@ async function signIn() {
         const userRef = doc(db, 'users', userId);
         const userDoc = await getDoc(userRef);
         if (!userDoc.exists()) {
-            await setDoc(userRef, {userId});
+            const userFields = {
+                joinedEvents: [], 
+                createdEvents: []
+            };
+            await setDoc(userRef, userFields);
             console.log("Added ", userId, " to user collection.");
         } else{
             console.log("User ", userId, " already exists in collection.");
