@@ -14,7 +14,8 @@ export default function Dashboard() {
     useEffect(() => {
         if (!user) 
             navigate("/");
-      }, [user, loading, navigate, error]);
+      }, [user, loading]);
+      
     return (
         <>
         {user === null ? 

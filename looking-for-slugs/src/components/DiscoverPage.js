@@ -5,11 +5,21 @@ import Box from './Box';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import CreateEventModal from './create_event_modal';
-import { firestorePullEvents } from '../firestoreHandler';
-
+import { auth } from "../firebase"
+import { useAuthState } from "react-firebase-hooks/auth";
+import { firestorePullEvents, firestoreAddUserToEvent, signIn } from '../firestoreHandler';
 
 function Discover(){
+    const [user, loading, error] = useAuthState(auth);
     const [eventsList, setEventsList] = useState("LOADING EVENTS");
+
+    function handleJoinEvent() {
+        if (!user) {
+            signIn();
+        } else {
+            //firestoreAddUserToEvent(user.uid, );
+        }
+    }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -20,7 +30,7 @@ function Discover(){
         .then((firestoreAllEvents) => {
             setEventsList(firestoreAllEvents.map((events) => 
             <Col sm={3}> 
-                <Box
+                <Box id="1234" buttonClick={handleJoinEvent} buttonText="Join"
                     title={events[0]}
                     time={events[1]}
                     location={events[2]}

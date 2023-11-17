@@ -1,4 +1,6 @@
 import firebase from "firebase/app";
+import { auth } from "./firebase"
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { getFirestore, doc, addDoc, deleteDoc, collection, getDocs, getDoc, updateDoc } from 'firebase/firestore';
 import { app, db } from "./firebase.js";
 
@@ -25,9 +27,6 @@ function firestoreCreateEvent(eventTitle, eventTime, eventLocation, eventDescrip
         console.error("Error adding Document: ", e);
     }
 }
-
-
-
 
 async function firestorePullEvents(){
     // pulling from database (THIS PROBABLY DOESNT WORK DONT CALL IT YET!!!)
@@ -80,7 +79,6 @@ async function firestorePullUserInfo(userId) {
     }
 }
 
-
 async function firestoreAddUserToEvent(userId, eventId) {
     try{
         const userRef = doc(db, 'users', userId);
@@ -122,5 +120,17 @@ async function fireStoreDeleteEvent(eventId){
     }
 }
 
+const provider = new GoogleAuthProvider();
 
-export {firestoreCreateEvent, firestorePullEvents, fireStoreDeleteEvent, firestoreAddUserToEvent, firestorePullUserInfo}
+async function signIn() {
+    try {
+        const result = await signInWithPopup(auth, provider);
+        console.log(result.user.displayName + " logged in successfully")
+        // addDoc here
+        // result.uid is the user id
+    } catch(e) {
+        console.error(e);
+    }
+}
+
+export {firestoreCreateEvent, firestorePullEvents, fireStoreDeleteEvent, firestoreAddUserToEvent, firestorePullUserInfo, signIn}
