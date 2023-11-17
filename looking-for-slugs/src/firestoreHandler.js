@@ -42,6 +42,45 @@ async function firestorePullEvents(){
     return firestoreEvents;
 }
 
+
+async function firestorePullUserInfo(userId) {
+    try {
+        const userRef = doc(db, 'users', userId);
+        const userDoc = await getDoc(userRef);
+        if (userDoc.exists()) {
+            const userData = userDoc.data();
+            const createdEventIds = userData.createdEvents;
+            const joinedEventIds = userData.joinedEvents;
+            const createdEventsList = createdEventIds.map(async eventId => {
+                const eventRef = doc(db, 'eventPosts', eventId);
+                const eventDoc = await getDoc(eventRef);
+                if (eventDoc.exists()) {
+                    return {id: eventId, ...eventDoc.data()};
+                }
+                return null;
+            });
+            const joinedEventsList = joinedEventIds.map(async eventId => {
+                const eventRef = doc(db, 'eventPosts', eventId);
+                const eventDoc = await getDoc(eventRef);
+                if (eventDoc.exists()) {
+                    return {id: eventId, ...eventDoc.data()};
+                }
+                return null;
+            });
+            const createdEvents = await createdEventsList;
+            const joinedEvents = await joinedEventsList;
+            return { createdEvents, joinedEvents };
+        } else {
+            console.log('User document does not exist');
+            return null;
+        }
+    } catch (e) {
+        console.error('Error fetching user information:', e);
+        return null;
+    }
+}
+
+
 async function firestoreAddUserToEvent(userId, eventId) {
     try{
         const userRef = doc(db, 'users', userId);
@@ -58,15 +97,15 @@ async function firestoreAddUserToEvent(userId, eventId) {
                     userData.joinedEvents.push(eventId);
                     await updateDoc(userRef, {joinedEvents: userData.joinedEvents});
                 }
-                console.log("User", userId," has been added to event ", eventId);
+                console.log("User ", userId," has been added to event ", eventId);
             } else{
                 console.log("User", userId, " is already in ", eventId);
             }
         } else{
-            console.log("Event or user does not exist.");
+            console.log("Event or usr does not exist.");
         }
     } catch(e){
-        console.error("Error adding user to event:", e);
+        console.error("Error adding user to event: ", e);
     }
 
 } 
@@ -84,4 +123,4 @@ async function fireStoreDeleteEvent(eventId){
 }
 
 
-export {firestoreCreateEvent, firestorePullEvents, fireStoreDeleteEvent, firestoreAddUserToEvent}
+export {firestoreCreateEvent, firestorePullEvents, fireStoreDeleteEvent, firestoreAddUserToEvent, firestorePullUserInfo}
