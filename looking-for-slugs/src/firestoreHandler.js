@@ -13,7 +13,7 @@ async function firestoreCreateEvent(eventTitle, eventTime, eventLocation, eventD
         console.log("couldnt grab database");
     }
     try{
-        const docRef = addDoc(collection(db, "eventPosts"), {
+        const docRef = await addDoc(collection(db, "eventPosts"), {
             title: eventTitle,
             time: eventTime,
             location: eventLocation,
@@ -23,7 +23,15 @@ async function firestoreCreateEvent(eventTitle, eventTime, eventLocation, eventD
         });
         console.log("Document written with title: ", eventTitle);
         const userRef = doc(db, 'users', creatorId);
-        await updateDoc(userRef, {createdEvents: docRef.id});
+        const userDoc = await getDoc(userRef);
+        if(userDoc.exists()) {
+            const userData = userDoc.data();
+            const createdEvents = userData.createdEvents || [];
+            createdEvents.push(docRef.id);
+            await updateDoc(userRef,{createdEvents});
+        } else {
+            console.log("Creator doesn't exist.");
+        }
     }
     catch(e){
         console.error("Error adding Document: ", e);
