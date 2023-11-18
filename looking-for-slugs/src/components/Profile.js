@@ -11,6 +11,8 @@ export default function Profile(props) {
     const [joinedEvents, setJoinedEvents] = useState("LOADING EVENTS");
     const [createdEvents, setCreatedEvents] = useState("LOADING EVENTS");
 
+    const user = props.user
+
     function handleDeleteEvent(docID) {
         fireStoreDeleteEvent(docID);
     }
@@ -21,11 +23,12 @@ export default function Profile(props) {
 
     useEffect(() => {
         const fetchData = async () => {
-            return await firestorePullUserInfo();
+            return await firestorePullUserInfo(user.uid);
         }
         
         fetchData()
         .then((userInfo) => {
+            //console.log(userInfo.joinedEvents);
             setJoinedEvents(userInfo.joinedEvents.map((events) =>  
             <Box id={events.id} buttonClick={handleDeleteEvent} buttonText="Remove"
                 title={events.title}
@@ -45,8 +48,6 @@ export default function Profile(props) {
         });
 
     }, []);
-
-    const user = props.user
     return (
         <Row className='Rows'>
             <Col sm={4}>
