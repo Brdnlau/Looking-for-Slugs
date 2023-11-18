@@ -49,24 +49,25 @@ async function firestorePullEvents() {
 
 
 async function firestorePullUserInfo(userId) {
-    try{
+    try {
         const userRef = doc(db, 'users', userId);
         const userDoc = await getDoc(userRef);
-        const userInfo = []
-        if(userDoc.exists()) {
-            userDoc.forEach(doc => {
-                const info = {id:doc.id, ...doc.data()};
-                userInfo.push(info);
-            });
-            return userInfo;
-        }
-    }
-        catch (e) {
-            console.error("Error fetching user info:",e);
-            return [];
-        }
+        const userInfo = [];
 
-    }        
+        if (userDoc.exists()) {
+            const userData = userDoc.data();
+            if (userData) {
+                const userFields = { id: userDoc.id, ...userData };
+                userInfo.push(userFields);
+            }
+        }
+        return userInfo;
+    } catch (e) {
+        console.error("Error fetching user info:", e);
+        return [];
+    }
+}
+
 
 async function firestoreAddUserToEvent(userId, eventId) {
     try{
