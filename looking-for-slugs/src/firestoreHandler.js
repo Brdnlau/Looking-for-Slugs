@@ -23,16 +23,7 @@ async function firestoreCreateEvent(eventTitle, eventTime, eventLocation, eventD
         });
         console.log("Document written with title: ", eventTitle);
         const userRef = doc(db, 'users', creatorId);
-        const userDoc = await getDoc(userRef);
-        if (userDoc.exists()) {
-            const userData = userDoc.data();
-            const updatedEvents = userData.createdEvents; 
-            updatedEvents.push(docRef.id);
-            await setDoc(userRef, {createdEvents: updatedEvents});
-            console.log("Added event ", docRef.id, " to ", creatorId, " createdEvents array.");
-        } else {
-            console.log("Creator's document has not been created yet.");
-        }
+        await updateDoc(userRef, {createdEvents: docRef.id});
     }
     catch(e){
         console.error("Error adding Document: ", e);
@@ -114,7 +105,7 @@ async function firestoreAddUserToEvent(userId, eventId) {
         const userDoc = await getDoc(userRef);
         const eventDoc = await getDoc(eventRef);
         if (eventDoc.exists() && userDoc.exists()) { 
-            const userData = userDoc.data();
+           const userData = userDoc.data();
             const eventData = eventDoc.data(); 
             if (!eventData.joined.includes(userId)) {
                 eventData.joined.push(userId);
