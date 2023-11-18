@@ -30,19 +30,6 @@ async function firestoreCreateEvent(eventTitle, eventTime, eventLocation, eventD
     }
 }
 
-/*async function firestorePullEvents(){
-    // pulling from database (THIS PROBABLY DOESNT WORK DONT CALL IT YET!!!)
-    var firestoreEvents = []
-    const querySnapshot = await getDocs(collection(db, "eventPosts"))
-    .then(querySnapshot =>{
-        querySnapshot.forEach((doc) => {
-            // console.log(doc.data().title, doc.data().time, doc.data().location, doc.data().description)
-            firestoreEvents.push([doc.data().title, doc.data().time, doc.data().location, doc.data().description])
-        })
-    });
-    return firestoreEvents;
-}*/ 
-
 async function firestorePullEvents() {
     try{
         const eventsCollection = collection(db, 'eventPosts');
@@ -67,8 +54,8 @@ async function firestorePullUserInfo(userId) {
         const userDoc = await getDoc(userRef);
         if (userDoc.exists()) {
             const userData = userDoc.data();
-            const createdEventIds = userData.createdEvents;
-            const joinedEventIds = userData.joinedEvents;
+            const createdEventIds = userData.createdEvents || []; 
+            const joinedEventIds = userData.joinedEvents || [];
             const createdEventsList = createdEventIds.map(async eventId => {
                 const eventRef = doc(db, 'eventPosts', eventId);
                 const eventDoc = await getDoc(eventRef);
@@ -114,7 +101,7 @@ async function firestoreAddUserToEvent(userId, eventId) {
                     userData.joinedEvents.push(eventId);
                     await updateDoc(userRef, {joinedEvents: userData.joinedEvents});
                 }
-                console.log("User ", userId," has been added to event ", eventId);
+                console.log("User ", userId," has been added to even ", eventId);
             } else{
                 console.log("User", userId, " is already in ", eventId);
             }
