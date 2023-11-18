@@ -15,7 +15,7 @@ function Discover(){
 
     function handleJoinEvent(docID) {
         if (!user) {
-            signIn();
+            signIn().then(() => {console.log(user)});
         } else {
             firestoreAddUserToEvent(user.uid, docID);
         }

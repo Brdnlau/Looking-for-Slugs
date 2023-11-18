@@ -28,9 +28,8 @@ export default function Profile(props) {
         
         fetchData()
         .then((userInfo) => {
-            //console.log(userInfo.joinedEvents);
             setJoinedEvents(userInfo.joinedEvents.map((events) =>  
-            <Box id={events.id} buttonClick={handleDeleteEvent} buttonText="Remove"
+            <Box id={events.id} buttonClick={handleLeaveEvent} buttonText="Leave"
                 title={events.title}
                 time={events.time}
                 location={events.location}
@@ -38,7 +37,7 @@ export default function Profile(props) {
                 memberCount={events.joined.length}
             ></Box>))
             setCreatedEvents(userInfo.createdEvents.map((events) =>  
-            <Box id={events.id} buttonClick={handleLeaveEvent} buttonText="Leave"
+            <Box id={events.id} buttonClick={handleDeleteEvent} buttonText="Delete"
                 title={events.title}
                 time={events.time}
                 location={events.location}
