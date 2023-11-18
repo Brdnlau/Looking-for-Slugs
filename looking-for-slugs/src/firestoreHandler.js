@@ -57,7 +57,8 @@ async function firestorePullUserInfo(userId) {
         if (userDoc.exists()) {
             const userData = userDoc.data();
             if (userData) {
-                const userFields = { id: userDoc.id, ...userData };
+                const { joinedEvents = [], createdEvents = [] } = userData;
+                const userFields = { id: userDoc.id, joinedEvents, createdEvents };
                 userInfo.push(userFields);
             }
         }
