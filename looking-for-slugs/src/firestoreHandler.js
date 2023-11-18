@@ -52,20 +52,54 @@ async function firestorePullUserInfo(userId) {
     try {
         const userRef = doc(db, 'users', userId);
         const userDoc = await getDoc(userRef);
-        const userInfo = [];
-
         if (userDoc.exists()) {
-            const userData = userDoc.data();
-            if (userData) {
-                const { joinedEvents = [], createdEvents = [] } = userData;
-                const userFields = { id: userDoc.id, joinedEvents, createdEvents };
-                userInfo.push(userFields);
-            }
+            const userData = userDoc.data() || {};
+            const joinedEvents = userData.joinedEvents || [];
+            const createdEvents = userData.createdEvents || [];
+            const joinedEventsDetails = await Promise.all(
+                joinedEvents.map(async (eventId) => {
+                    const eventRef = doc(db, 'eventPosts', eventId);
+                    const eventDoc = await getDoc(eventRef);
+                    if (eventDoc.exists()) {
+                        const eventData = eventDoc.data() || {};
+                        return {
+                            id: eventId,
+                            title: eventData.title,
+                            time: eventData.time,
+                            location: eventData.location,
+                            description: eventData.description,
+                            joined: eventData.joined || [],
+                        };
+                    }
+                    return null;
+                })
+            );
+            const createdEventsDetails = await Promise.all(
+                createdEvents.map(async (eventId) => {
+                    const eventRef = doc(db, 'eventPosts', eventId);
+                    const eventDoc = await getDoc(eventRef);
+                    if (eventDoc.exists()) {
+                        const eventData = eventDoc.data() || {};
+                        return {
+                            id: eventId,
+                            title: eventData.title,
+                            time: eventData.time,
+                            location: eventData.location,
+                            description: eventData.description,
+                            joined: eventData.joined || [],
+                        };
+                    }
+                    return null;
+                })
+            );
+            return { joinedEvents: joinedEventsDetails, createdEvents: createdEventsDetails };
+        } else {
+            console.log('User document does not exist');
+            return null;
         }
-        return userInfo;
     } catch (e) {
-        console.error("Error fetching user info:", e);
-        return [];
+        console.error('Error fetching user information:', e);
+        return null;
     }
 }
 
