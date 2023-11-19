@@ -11,13 +11,18 @@ import { firestorePullEvents, firestoreAddUserToEvent, signIn } from '../firesto
 
 function Discover(){
     const [user, loading, error] = useAuthState(auth);
-    const [eventsList, setEventsList] = useState("LOADING EVENTS");
+    const [eventsList, setEventsList] = useState([]);
 
     function handleJoinEvent(docID) {
         if (!user) {
-            signIn().then(() => {console.log(user)});
+            signIn().then((newUser) => 
+            {firestoreAddUserToEvent(newUser.uid, docID);
+            setEventsList();
+            });
         } else {
             firestoreAddUserToEvent(user.uid, docID);
+            setEventsList(prevEventsList =>
+            prevEventsList.map(event => event.id === docID ? { ...event, joined: event.joined.concat([""])} : event));
         }
     }
 
@@ -28,19 +33,10 @@ function Discover(){
         
         fetchData()
         .then((firestoreAllEvents) => {
-            setEventsList(firestoreAllEvents.map((events) => 
-            <Col sm={3}> 
-                <Box id={events.id} buttonClick={handleJoinEvent} buttonText="Join"
-                    title={events.title}
-                    time={events.time}
-                    location={events.location}
-                    content={events.description}
-                    memberCount={events.joined.length}
-                ></Box>
-            </Col>))
+            setEventsList(firestoreAllEvents);
         });
 
-    }, []);
+    }, [user]);
 
     return (
         <div>
@@ -52,7 +48,16 @@ function Discover(){
             </div>
             <div className="boxes">
                 <Row>
-                    {eventsList}
+                {eventsList.map((events) => 
+                <Col sm={3}> 
+                    <Box id={events.id} buttonClick={handleJoinEvent} buttonText={user && events.joined.includes(user.uid) ? "Leave" : "Join"}
+                        title={events.title}
+                        time={events.time}
+                        location={events.location}
+                        content={events.description}
+                        memberCount={events.joined.length}
+                    ></Box>
+                </Col>)}
                 </Row>
             </div>
         </div>

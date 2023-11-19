@@ -1,8 +1,7 @@
-import firebase from "firebase/app";
 import { auth } from "./firebase"
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { getFirestore, doc, addDoc, deleteDoc, collection, getDocs, getDoc, updateDoc, setDoc } from 'firebase/firestore';
-import { app, db } from "./firebase.js";
+import { signInWithPopup } from "firebase/auth";
+import { doc, addDoc, deleteDoc, collection, getDocs, getDoc, updateDoc, setDoc } from 'firebase/firestore';
+import { provider, db } from "./firebase.js";
 
 async function firestoreCreateEvent(eventTitle, eventTime, eventLocation, eventDescription, creatorId) { // Added creatorId field to store eventcreator Id.
     //granger
@@ -158,8 +157,6 @@ async function fireStoreDeleteEvent(eventId){
     }
 }
 
-const provider = new GoogleAuthProvider();
-
 async function signIn() {
     try {
         const result = await signInWithPopup(auth, provider);
@@ -177,9 +174,11 @@ async function signIn() {
         } else{
             console.log("User ", userId, " already exists in collection.");
         }
+        return result.user;
     } catch(e) {
         console.error(e);
     }
+    return null;
 }
 
 export {firestoreCreateEvent, firestorePullEvents, fireStoreDeleteEvent, firestoreAddUserToEvent, firestorePullUserInfo, signIn}
