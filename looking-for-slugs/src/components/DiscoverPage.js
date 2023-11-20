@@ -22,7 +22,7 @@ function Discover(){
         } else {
             firestoreAddUserToEvent(user.uid, docID);
             setEventsList(prevEventsList =>
-            prevEventsList.map(event => event.id === docID ? { ...event, joined: event.joined.concat([""])} : event));
+            prevEventsList.map(event => event.id === docID ? { ...event, joined: event.joined.concat([user.uid])} : event));
         }
     }
 
