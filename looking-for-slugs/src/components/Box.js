@@ -4,7 +4,8 @@ import Card from 'react-bootstrap/Card';
 import fillerImage from '../components/images/filler_image.jpg';
 import Button from 'react-bootstrap/Button';
 import Badge from 'react-bootstrap/Badge';
-
+import CardFooter from 'react-bootstrap/esm/CardFooter';
+import ExpandedCard from './ExpandedCard'
 
 function Box(props) {
     function handleClick() {
@@ -20,7 +21,7 @@ function Box(props) {
           timeValue= "" + hours;
         } else if (hours > 12) {
           timeValue= "" + (hours - 12);
-        } else if (hours == 0) {
+        } else if (hours === 0) {
           timeValue= "12";
         }
          
@@ -54,6 +55,15 @@ function Box(props) {
                         <span class = "bold">Description:</span> {props.content}
                     </Card.Text>
                 </Card.Body>
+                <Card.Footer>
+                    <ExpandedCard 
+                        buttonText={props.buttonText}
+                        title={props.title}
+                        time={militaryToStandard(props.time)}
+                        location={props.location}
+                        content={props.content}
+                        memberCount={props.memberCount}/>
+                </Card.Footer>
             </Card>
         </div>
     );
