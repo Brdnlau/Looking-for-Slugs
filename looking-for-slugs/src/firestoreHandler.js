@@ -1,6 +1,6 @@
 import { auth } from "./firebase"
 import { signInWithPopup } from "firebase/auth";
-import { doc, addDoc, deleteDoc, collection, getDocs, getDoc, updateDoc, setDoc } from 'firebase/firestore';
+import { doc, addDoc, deleteDoc, collection, getDocs, getDoc, updateDoc, setDoc, writeBatch } from 'firebase/firestore';
 import { provider, db } from "./firebase.js";
 
 async function firestoreCreateEvent(eventTitle, eventTime, eventLocation, eventDescription, creatorId) { // Added creatorId field to store eventcreator Id.
@@ -140,22 +140,38 @@ async function firestoreAddUserToEvent(userId, eventId) {
 
 } 
 
-// Send this function an eventId and it will be deleted from Firebase. 
-// After implemented users collections, need to add logic to remove from every users created and joined events!
-async function fireStoreDeleteEvent(eventId){
+async function fireStoreDeleteEvent(eventId) {
     try {
         const eventRef = doc(db, 'eventPosts', eventId);
         const eventDoc = await getDoc(eventRef);
         if (eventDoc.exists()) {
             await deleteDoc(eventRef);
-            console.log("Document with ID", eventId, "has been deleted.");
+            const usersRef = collection(db, 'users');
+            const usersSnapshot = await getDocs(usersRef);
+            const batch = writeBatch(db);
+            usersSnapshot.forEach((doc) => {
+                const userData = doc.data();
+                let updatedCreatedEvents = userData.createdEvents || [];
+                let updatedJoinedEvents = userData.joinedEvents || [];
+                if (updatedCreatedEvents.includes(eventId)) {
+                    updatedCreatedEvents = updatedCreatedEvents.filter((id) => id !== eventId);
+                    batch.update(doc.ref, { createdEvents: updatedCreatedEvents });
+                }
+                if (updatedJoinedEvents.includes(eventId)) {
+                    updatedJoinedEvents = updatedJoinedEvents.filter((id) => id !== eventId);
+                    batch.update(doc.ref, { joinedEvents: updatedJoinedEvents });
+                }
+            });
+            await batch.commit();
+            console.log("Event deleted:", eventId);
         } else {
-            console.log("Event ", eventId, " does not exist.");
+            console.log("Event does not exist:", eventId);
         }
-    } catch(e) {
-        console.error("Error deleting document: ",e);
+    } catch (e) {
+        console.error("Error deleting event:", e);
     }
 }
+
 
 async function signIn() {
     try {
