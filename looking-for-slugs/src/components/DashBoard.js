@@ -5,7 +5,6 @@ import { useAuthState } from "react-firebase-hooks/auth";
 
 import Profile from "./Profile";
 import NavbarForHome from "./Navbar";
-import LogOut from "./Logout";
 
 export default function Dashboard() {
     const [user, loading, error] = useAuthState(auth);
@@ -28,7 +27,6 @@ export default function Dashboard() {
             <div>
                 <NavbarForHome user={user}/>
                 <Profile user={user}/>
-                <LogOut/>
             </div>
         </>
         }

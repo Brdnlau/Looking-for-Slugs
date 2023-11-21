@@ -14,11 +14,19 @@ export default function Profile(props) {
     const user = props.user
 
     function handleDeleteEvent(docID) {
-        fireStoreDeleteEvent(docID);
+        if (fireStoreDeleteEvent(docID)) {
+            setCreatedEvents(prevEventsList => prevEventsList.filter(box => box.props.id !== docID));
+        } else {
+            alert("Unable to delete event");
+        }
     }
     
     function handleLeaveEvent(docID) {
-        firestoreLeaveEvent(docID);
+        if (firestoreLeaveEvent(user.uid, docID)) {
+            setJoinedEvents(prevEventsList => prevEventsList.filter(box => box.props.id !== docID));
+        } else {
+            alert("Error leaving event");
+        }
     }
 
     useEffect(() => {
