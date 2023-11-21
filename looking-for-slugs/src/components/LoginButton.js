@@ -7,8 +7,7 @@ export default function LoginButton(props){
     const navigate = useNavigate();
     const handleGoogleLogin = async () => {
         try {
-            signIn();
-            navigate("/dashboard");
+            signIn().then(() => {navigate("/dashboard");});
         } catch (error) {
             console.error(error);
         }
