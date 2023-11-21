@@ -128,15 +128,17 @@ async function firestoreAddUserToEvent(userId, eventId) {
                     await updateDoc(userRef, {joinedEvents: userData.joinedEvents});
                 }
                 console.log("User ", userId," has been added to even ", eventId);
+                return true;
             } else{
                 console.log("User", userId, " is already in ", eventId);
             }
         } else{
-            console.log("Event or usr does not exist.");
+            console.log("Event or user does not exist.");
         }
     } catch(e){
         console.error("Error adding user to event: ", e);
     }
+    return false;
 
 } 
 
@@ -157,9 +159,11 @@ async function firestoreLeaveEvent(userId, eventId) {
             await updateDoc(eventRef, { joined: updatedJoined });
         }
         console.log("User ", userId,  " has left event ", eventId);
+        return true;
     } catch (e) {
         console.error('Error leaving event:', e);
     }
+    return false;
 }
 
 async function fireStoreDeleteEvent(eventId) {
@@ -186,14 +190,15 @@ async function fireStoreDeleteEvent(eventId) {
             });
             await batch.commit();
             console.log("Event deleted:", eventId);
+            return true;
         } else {
             console.log("Event does not exist:", eventId);
         }
     } catch (e) {
         console.error("Error deleting event:", e);
     }
+    return false;
 }
-
 
 async function signIn() {
     try {

@@ -5,7 +5,7 @@ import './Profile.css'
 import Card from 'react-bootstrap/Card';
 import Box from './Box.js';
 import ListGroup from 'react-bootstrap/ListGroup';
-import { firestorePullUserInfo, fireStoreDeleteEvent } from '../firestoreHandler.js';
+import { firestorePullUserInfo, fireStoreDeleteEvent, firestoreLeaveEvent } from '../firestoreHandler.js';
 
 export default function Profile(props) {
     const [joinedEvents, setJoinedEvents] = useState("LOADING EVENTS");
@@ -18,7 +18,7 @@ export default function Profile(props) {
     }
     
     function handleLeaveEvent(docID) {
-        return;
+        firestoreLeaveEvent(docID);
     }
 
     useEffect(() => {

@@ -7,7 +7,7 @@ import Col from 'react-bootstrap/Col';
 import CreateEventModal from './create_event_modal';
 import { auth } from "../firebase"
 import { useAuthState } from "react-firebase-hooks/auth";
-import { firestorePullEvents, firestoreAddUserToEvent, signIn } from '../firestoreHandler';
+import { firestorePullEvents, firestoreAddUserToEvent, signIn, firestoreLeaveEvent } from '../firestoreHandler';
 
 function Discover(){
     const [user, loading, error] = useAuthState(auth);
@@ -20,9 +20,21 @@ function Discover(){
             setEventsList();
             });
         } else {
-            firestoreAddUserToEvent(user.uid, docID);
+            if (firestoreAddUserToEvent(user.uid, docID)) {
+                setEventsList(prevEventsList =>
+                    prevEventsList.map(event => event.id === docID ? { ...event, joined: [user.uid, ...event.joined]} : event));
+            } else{
+                alert("Error joining Event");
+            }
+        }
+    }
+
+    function handleLeaveEvent(docID) {
+        if (firestoreLeaveEvent(user.uid, docID)) {
             setEventsList(prevEventsList =>
-            prevEventsList.map(event => event.id === docID ? { ...event, joined: event.joined.concat([user.uid])} : event));
+                prevEventsList.map(event => event.id === docID ? { ...event, joined: event.joined.filter(id => id !== user.uid)} : event));
+        } else{
+            alert("Error leaving Event");
         }
     }
 
@@ -50,7 +62,7 @@ function Discover(){
                 <Row>
                 {eventsList.map((events) => 
                 <Col sm={3}> 
-                    <Box id={events.id} buttonClick={handleJoinEvent} buttonText={user && events.joined.includes(user.uid) ? "Leave" : "Join"}
+                    <Box id={events.id} buttonClick={user && events.joined.includes(user.uid) ? handleLeaveEvent : handleJoinEvent} buttonText={user && events.joined.includes(user.uid) ? "Leave" : "Join"}
                         title={events.title}
                         time={events.time}
                         location={events.location}
