@@ -140,6 +140,28 @@ async function firestoreAddUserToEvent(userId, eventId) {
 
 } 
 
+async function firestoreLeaveEvent(userId, eventId) {
+    try {
+        const userRef = doc(db, 'users', userId);
+        const eventRef = doc(db, 'eventPosts', eventId);
+        const userDoc = await getDoc(userRef);
+        if (userDoc.exists()) {
+            const userData = userDoc.data();
+            const updatedJoinedEvents = userData.joinedEvents.filter(id => id !== eventId);
+            await updateDoc(userRef, { joinedEvents: updatedJoinedEvents });
+        }
+        const eventDoc = await getDoc(eventRef);
+        if (eventDoc.exists()) {
+            const eventData = eventDoc.data();
+            const updatedJoined = eventData.joined.filter(id => id !== userId);
+            await updateDoc(eventRef, { joined: updatedJoined });
+        }
+        console.log("User ", userId,  " has left event ", eventId);
+    } catch (e) {
+        console.error('Error leaving event:', e);
+    }
+}
+
 async function fireStoreDeleteEvent(eventId) {
     try {
         const eventRef = doc(db, 'eventPosts', eventId);
@@ -197,4 +219,4 @@ async function signIn() {
     return null;
 }
 
-export {firestoreCreateEvent, firestorePullEvents, fireStoreDeleteEvent, firestoreAddUserToEvent, firestorePullUserInfo, signIn}
+export {firestoreCreateEvent, firestorePullEvents, fireStoreDeleteEvent, firestoreAddUserToEvent, firestorePullUserInfo, signIn, firestoreLeaveEvent}
