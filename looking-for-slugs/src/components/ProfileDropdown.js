@@ -15,7 +15,10 @@ export default function ProfileDropdown(props) {
 
     return (
         <div>
-        <button className={props.class} onClick={handleClick}><img src={props.user.photoURL} alt=""/>{props.user.displayName}</button>
+            <button className={props.class} onClick={handleClick}>
+                <img src={props.user.photoURL} alt=""/>
+                <p>{props.user.displayName}</p>
+            </button>
         </div>
     );
 }

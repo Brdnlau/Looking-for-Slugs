@@ -31,11 +31,15 @@ function NavbarForHome(props) {
               <Nav.Link eventKey={3} as={Link} to="/discover">
                 Discover
               </Nav.Link>
-              <CreateEventModal class = "event_creation_button"/>
+              <Nav.Link>
+                <CreateEventModal class = "event_creation_button"/>
+              </Nav.Link>
               <Nav.Link eventKey={5} href="#memes">
                 About
               </Nav.Link>
-              {(props.user) ? <ProfileDropdown class="dropdown" user={props.user}/> : <LoginButton class="login-button" text="Login" />}
+              <Nav.Link>
+                {(props.user) ? <ProfileDropdown class="dropdown" user={props.user}/> : <LoginButton class="login-button" text="Login" />}
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
       </Navbar>
