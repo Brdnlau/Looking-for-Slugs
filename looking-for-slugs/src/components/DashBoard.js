@@ -26,7 +26,7 @@ export default function Dashboard() {
         </>:
         <>
             <div>
-                <NavbarForHome/>
+                <NavbarForHome user={user}/>
                 <Profile user={user}/>
                 <LogOut/>
             </div>

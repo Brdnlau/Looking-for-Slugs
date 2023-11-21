@@ -52,7 +52,7 @@ function Discover(){
 
     return (
         <div>
-            <NavbarHome/>
+            <NavbarHome user={user}/>
             <div className="Discover_txt">
                 <h1>Discover</h1>
                 <button className="filter">Filter</button>

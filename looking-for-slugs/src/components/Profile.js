@@ -44,7 +44,7 @@ export default function Profile(props) {
                 content={events.description}
                 memberCount={events.joined.length}
             ></Box>))
-        });
+        }, []);
 
     }, []);
     return (

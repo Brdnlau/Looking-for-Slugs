@@ -6,8 +6,9 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import LoginButton from './LoginButton';
 import {Link} from 'react-router-dom';
 import CreateEventModal from './create_event_modal';
+import ProfileDropdown from './ProfileDropdown';
 
-function NavbarForHome() {
+function NavbarForHome(props) {
   return (
     <div className = "spacing">
       <Navbar collapseOnSelect expand="lg">
@@ -34,7 +35,7 @@ function NavbarForHome() {
               <Nav.Link eventKey={5} href="#memes">
                 About
               </Nav.Link>
-              <LoginButton class="login-button" text="Login" />
+              {(props.user) ? <ProfileDropdown class="dropdown" user={props.user}/> : <LoginButton class="login-button" text="Login" />}
             </Nav>
           </Navbar.Collapse>
       </Navbar>

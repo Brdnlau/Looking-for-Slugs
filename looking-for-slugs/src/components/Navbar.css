@@ -47,3 +47,17 @@
 .event_creation_button:hover{
     text-decoration: underline;
 }
+
+.dropdown {
+    margin-left: 0.1em;
+    padding: 0;
+    border: 0px;
+    background: #fff5d7;
+}
+
+.dropdown img{
+    max-width: 20%;
+    height: auto;
+    width: auto\9;
+    margin-right: 20px;
+}

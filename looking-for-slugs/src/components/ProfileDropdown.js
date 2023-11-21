@@ -3,12 +3,19 @@ import { auth } from "../firebase"
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
-export default function LogOut(props){
+export default function ProfileDropdown(props) {
     const navigate = useNavigate();
     const handleLogOut = async () => {
         signOut(auth).then(() => {navigate("/")})
     }
+
+    function handleClick() {
+        handleLogOut();
+    }
+
     return (
-        <button variant="light" onClick={handleLogOut}>LogOut</button>
+        <div>
+        <button className={props.class} onClick={handleClick}><img src={props.user.photoURL} alt=""/>{props.user.displayName}</button>
+        </div>
     );
 }
