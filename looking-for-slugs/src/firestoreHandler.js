@@ -110,6 +110,28 @@ async function firestorePullUserInfo(userId) {
     }
 }
 
+async function getUsersJoinedEvent(eventId) {
+    try {
+        const usersRef = collection(db, 'users');
+        const querySnapshot = await getDocs(usersRef);
+        const users = [];
+        querySnapshot.forEach(async (doc) => {
+            const userData = doc.data();
+            if (userData.joinedEvents && userData.joinedEvents.includes(eventId) && userData.username) {
+                users.push({
+                    id: doc.id,
+                    username: userData.username
+                });
+            }
+        });
+        return users;
+    } catch (e) {
+        console.error('Error fetching users:', e);
+        return [];
+    }
+}
+
+
 
 async function firestoreAddUserToEvent(userId, eventId) {
     try{
@@ -210,7 +232,8 @@ async function signIn() {
         if (!userDoc.exists()) {
             const userFields = {
                 joinedEvents: [], 
-                createdEvents: []
+                createdEvents: [],
+                username: result.user.displayName
             };
             await setDoc(userRef, userFields);
             console.log("Added ", userId, " to user collection.");
@@ -224,4 +247,5 @@ async function signIn() {
     return null;
 }
 
-export {firestoreCreateEvent, firestorePullEvents, fireStoreDeleteEvent, firestoreAddUserToEvent, firestorePullUserInfo, signIn, firestoreLeaveEvent}
+
+export {firestoreCreateEvent, firestorePullEvents, fireStoreDeleteEvent, getUsersJoinedEvent, firestoreAddUserToEvent, firestorePullUserInfo, signIn, firestoreLeaveEvent}
