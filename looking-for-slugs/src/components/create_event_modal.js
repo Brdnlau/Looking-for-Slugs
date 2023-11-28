@@ -1,11 +1,10 @@
-import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Modal from 'react-bootstrap/Modal';
-import {firestoreCreateEvent} from '../firestoreHandler'
-import { auth } from "../firebase"
+import { useState } from "react";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Modal from "react-bootstrap/Modal";
+import { firestoreCreateEvent } from "../firestoreHandler";
+import { auth } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-
 
 function CreateEventModal(props) {
   const [show, setShow] = useState(false);
@@ -17,10 +16,16 @@ function CreateEventModal(props) {
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
-    }else {
-        setShow(false);
-        firestoreCreateEvent(document.querySelector("#title").value, document.querySelector("#time").value, document.querySelector("#location").value, document.querySelector("#description").value, user.uid);
-        console.log("Submitted event to Firestore");
+    } else {
+      setShow(false);
+      firestoreCreateEvent(
+        document.querySelector("#title").value,
+        document.querySelector("#time").value,
+        document.querySelector("#location").value,
+        document.querySelector("#description").value,
+        user.uid
+      );
+      console.log("Submitted event to Firestore");
     }
 
     setValidated(true);
@@ -39,54 +44,53 @@ function CreateEventModal(props) {
           <Modal.Title>Create Event</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            <Form noValidate validated={validated} id="event_form" onSubmit={handleSubmit}>
-                <Form.Group className="mb-3" controlId="title">
-                    <Form.Label>Name</Form.Label>
-                    <Form.Control
-                        required
-                        type="name"
-                        placeholder="name"
-                        autoFocus
-                    />
-                    <Form.Control.Feedback type="invalid">
-                        Please choose a name.
-                    </Form.Control.Feedback>
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="time">
-                    <Form.Label>Time</Form.Label>
-                    <Form.Control
-                        required
-                        type="time"
-                        placeholder="HH:MM AM/PM"
-                        autoFocus
-                    />
-                    <Form.Control.Feedback type="invalid">
-                        Please select a time.
-                    </Form.Control.Feedback>
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="location">
-                    <Form.Label>Location</Form.Label>
-                    <Form.Control
-                        required
-                        type="location"
-                        autoFocus
-                    />
-                    <Form.Control.Feedback type="invalid">
-                        Please name a location.
-                    </Form.Control.Feedback>
-                </Form.Group>
-                <Form.Group
+          <Form
+            noValidate
+            validated={validated}
+            id="event_form"
+            onSubmit={handleSubmit}
+          >
+            <Form.Group className="mb-3" controlId="title">
+              <Form.Label>Name</Form.Label>
+              <Form.Control required type="name" placeholder="name" autoFocus />
+              <Form.Control.Feedback type="invalid">
+                Please choose a name.
+              </Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="date">
+              <Form.Label>Date</Form.Label>
+              <Form.Control required type="date" autoFocus />
+              <Form.Control.Feedback type="invalid">
+                Please select a time.
+              </Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="time">
+              <Form.Label>Time</Form.Label>
+              <Form.Control
                 required
-                className="mb-3"
-                controlId="description"
-                >
-                    <Form.Label>Activity</Form.Label>
-                    <Form.Control as="textarea" rows={2} required/>
-                    <Form.Control.Feedback type="invalid">
-                        Please describe the activity.
-                    </Form.Control.Feedback>
-                </Form.Group>
-            </Form>
+                type="time"
+                placeholder="HH:MM AM/PM"
+                autoFocus
+              />
+              <Form.Control.Feedback type="invalid">
+                Please select a time.
+              </Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="location">
+              <Form.Label>Location</Form.Label>
+              <Form.Control required type="location" autoFocus />
+              <Form.Control.Feedback type="invalid">
+                Please name a location.
+              </Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group required className="mb-3" controlId="description">
+              <Form.Label>Activity</Form.Label>
+              <Form.Control as="textarea" rows={2} required />
+              <Form.Control.Feedback type="invalid">
+                Please describe the activity.
+              </Form.Control.Feedback>
+            </Form.Group>
+          </Form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
