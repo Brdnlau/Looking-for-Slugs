@@ -1,0 +1,26 @@
+.drop_profile_pic {
+  max-width: 40%;
+  height: auto;
+  width: auto\9;
+  border-radius: 30%;
+  margin-top: -3px;
+}
+.drop_color {
+  background-color: white;
+}
+.drop_elements {
+  display: inline-block;
+  background-color: transparent !important;
+}
+
+.btn-success,
+.btn-success:hover,
+.btn-success:active,
+.btn-success:visited,
+.btn-success:focus {
+  background-color: transparent !important;
+  border: none !important;
+  color: #442c34;
+  font-size: 1.2rem;
+  --bs-btn-active-color: #442c34 !important;
+}

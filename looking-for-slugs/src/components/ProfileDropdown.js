@@ -1,24 +1,37 @@
 import React from "react";
-import { auth } from "../firebase"
+import { auth } from "../firebase";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import "./ProfileDropdown.css";
 
 export default function ProfileDropdown(props) {
-    const navigate = useNavigate();
-    const handleLogOut = async () => {
-        signOut(auth).then(() => {navigate("/")})
-    }
+  const navigate = useNavigate();
+  const handleLogOut = async () => {
+    signOut(auth).then(() => {
+      navigate("/");
+    });
+  };
 
-    function handleClick() {
-        handleLogOut();
-    }
+  function handleClick() {
+    handleLogOut();
+  }
 
-    return (
-        <div>
-            <button className={props.class} onClick={handleClick}>
-                <img src={props.user.photoURL} alt=""/>
-                <p>{props.user.displayName}</p>
-            </button>
-        </div>
-    );
+  return (
+    <div>
+      <div class="drop_elements">
+        <img src={props.user.photoURL} class="drop_profile_pic" />
+      </div>
+      <div class="drop_elements">
+        <DropdownButton
+          variant="success"
+          title={props.user.displayName}
+          class="drop_color"
+        >
+          <Dropdown.Item onClick={handleClick}>Logout</Dropdown.Item>
+        </DropdownButton>
+      </div>
+    </div>
+  );
 }
