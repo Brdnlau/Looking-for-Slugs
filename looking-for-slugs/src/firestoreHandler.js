@@ -43,9 +43,11 @@ async function firestorePullEvents() {
         const querySnapshot = await getDocs(eventsCollection);
         const firestoreEvents = [];
         querySnapshot.forEach(doc => {
-            const event = {id:doc.id, ...doc.data()};
+            const usersJoined = getUsersJoinedEvent(doc.id);
+            const event = {id:doc.id, joined:usersJoined, ...doc.data()};
             firestoreEvents.push(event);
         });
+
         return firestoreEvents;
     }
     catch (e) {
@@ -247,5 +249,9 @@ async function signIn() {
     return null;
 }
 
+async function editPost(eventTitle, eventTime, eventLocation, eventDescription, creatorId){
+    // 
+}
 
-export {firestoreCreateEvent, firestorePullEvents, fireStoreDeleteEvent, getUsersJoinedEvent, firestoreAddUserToEvent, firestorePullUserInfo, signIn, firestoreLeaveEvent}
+
+export {firestoreCreateEvent, firestorePullEvents, fireStoreDeleteEvent, getUsersJoinedEvent, firestoreAddUserToEvent, firestorePullUserInfo, signIn, firestoreLeaveEvent, editPost}
