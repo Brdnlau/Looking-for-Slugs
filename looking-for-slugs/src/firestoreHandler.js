@@ -249,8 +249,15 @@ async function signIn() {
     return null;
 }
 
-async function editPost(eventTitle, eventTime, eventLocation, eventDescription, creatorId){
+async function editPost(eventTitle, eventTime, eventLocation, eventDescription, eventId){
     // 
+    const docRef = doc(db, "eventPosts", eventId);
+    await updateDoc(docRef, {
+        title: eventTitle,
+        time: eventTime,
+        location: eventLocation,
+        description: eventDescription
+    })
 }
 
 
