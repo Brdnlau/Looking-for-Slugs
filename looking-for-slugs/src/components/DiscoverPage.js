@@ -64,10 +64,12 @@ function Discover(){
                 <Col sm={3}> 
                     <Box id={events.id} buttonClick={user && events.joined.includes(user.uid) ? handleLeaveEvent : handleJoinEvent} buttonText={user && events.joined.includes(user.uid) ? "Leave" : "Join"}
                         title={events.title}
+                        organizer={events.creator}
                         time={events.time}
                         location={events.location}
                         content={events.description}
                         memberCount={events.joined.length}
+                        members={events.joined}
                     ></Box>
                 </Col>)}
                 </Row>

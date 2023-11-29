@@ -32,7 +32,7 @@ function ExpandedCard(props) {
               </div>
               <Card.Body>
                   <Card.Text>
-                      <span class = "bold">Owner:</span> Owner
+                      <span class = "bold">Organizer:</span> {props.organizer}
                   </Card.Text>
                   <Card.Text class = "fix_margin">
                       <span class = "bold">Time:</span> <span class = "time">{props.time}</span>
@@ -46,18 +46,8 @@ function ExpandedCard(props) {
                   <Card.Text>
                       <span class = "bold">Members:</span>
                       <Row>
-                        <Col xs={4} md={4}>
-                          member
-                        </Col>
-                        <Col xs={4} md={4}>
-                          member
-                        </Col>                        <Col xs={4} md={4}>
-                          member
-                        </Col>                        <Col xs={4} md={4}>
-                          member
-                        </Col>                        <Col xs={4} md={4}>
-                          member
-                        </Col>
+                        {props.members.map((member) => 
+                        <Col xs={4} md={4}>{member}</Col>)}
                       </Row>
                   </Card.Text>
               </Card.Body>

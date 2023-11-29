@@ -43,7 +43,7 @@ function Box(props) {
                 <Card.Body>
                     <Card.Title><span class = "bold">{props.title}</span></Card.Title>
                     <Card.Text>
-                        <span class = "bold">Owner:</span> Owner
+                        <span class = "bold">Organizer:</span> {props.organizer}
                     </Card.Text>
                     <Card.Text class = "fix_margin">
                         <span class = "bold">Time:</span> <span class = "time">{militaryToStandard(props.time)}</span>
@@ -62,7 +62,7 @@ function Box(props) {
                         time={militaryToStandard(props.time)}
                         location={props.location}
                         content={props.content}
-                        memberCount={props.memberCount}/>
+                        members={props.members}/>
                 </Card.Footer>
             </Card>
         </div>
