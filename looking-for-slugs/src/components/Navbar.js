@@ -34,7 +34,7 @@ function NavbarForHome(props) {
               <Nav.Link>
                 <CreateEventModal class = "event_creation_button"/>
               </Nav.Link>
-              <Nav.Link eventKey={5} href="#memes">
+              <Nav.Link eventKey={5} as={Link} to="/about">
                 About
               </Nav.Link>
               <Nav.Link>
