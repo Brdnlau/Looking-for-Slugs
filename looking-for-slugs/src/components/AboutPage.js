@@ -37,20 +37,19 @@ function AboutPage() {
                 <Col sm={4}>
                     <div className="AboutUs">
                         <h1>About the Creators</h1>
-                        <p className="Text2">The Looking for Slugs team consists of four passionate individuals looking to leave a mark on the world: Abhay Singh, Brandon Lau, Daniel Sarni, and Granger Pasko. Each team member brings a unique set of skills and experiences to the table, united by a common vision of creating a dynamic and inclusive space for event creation and connection. Our team is more than a collection of individuals; we are a collaborative force driven by shared values and a commitment to excellence. We thrive on diversity, valuing the unique perspectives each team member brings, and work seamlessly together towards our common goal.</p>
+                        <p className="Text2">The Looking for Slugs team consists of four passionate individuals looking to leave a mark on the world: Abhay Singh, Brandon Lau, Daniel Sarni, and Granger Pasko. Each team member brings a unique set of skills and experiences to the table, united by a common vision of creating a dynamic and inclusive space for event creation and connection. Our team is more than a collection of individuals; we are a collaborative force driven by shared values and a commitment to excellence.</p>
                     </div>
                 </Col>
             </Row>
-            <Row>
+            <Row className="Rows">
                 <Col sm={4}>
-                    <img src={firstimg} className="image1"></img>
+                    <img src={firstimg}></img>
                 </Col>
                 <Col sm={4}>
                     <img src={sndimg}></img>
                 </Col>
                 <Col sm={4}>
                     <img src={thirdimg}></img>
-
                 </Col>
             </Row>
         </div>
