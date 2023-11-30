@@ -6,12 +6,13 @@ import Row from 'react-bootstrap/esm/Row';
 import firstimg from '../components/images/teamwork.jpg';
 import sndimg from '../components/images/brainstorm.jpg';
 import thirdimg from '../components/images/team.jpg';
+import { auth } from "../firebase"
 
 function AboutPage() {
 
     return (
         <div>
-            <NavbarHome/>
+            <NavbarHome user={auth.currentUser}/>
             <Row className="Rows">
                 <Col sm={4}>
                     <div className="Our Mission">

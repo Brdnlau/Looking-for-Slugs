@@ -13,10 +13,26 @@ function CreateEventModal(props) {
 
   const handleSubmit = (event) => {
     const form = document.querySelector("#event_form");
+    //Check if date is in the past
+
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
     } else {
+      //Check if date is in the past
+      let inputtedDate = new Date(document.querySelector("#date").value + "T00:00:00");
+      console.log(document.querySelector("#date").value)
+      console.log(inputtedDate);
+      let todayDate = new Date();
+      todayDate.setHours(0,0,0,0);
+      console.log(inputtedDate, todayDate);
+      if (inputtedDate < todayDate || inputtedDate === todayDate) {
+        event.preventDefault();
+        event.stopPropagation();
+        document.querySelector("#date").value = "";
+        setValidated(true);
+        return;
+      }
       setShow(false);
       firestoreCreateEvent(
         document.querySelector("#title").value,
@@ -61,7 +77,7 @@ function CreateEventModal(props) {
               <Form.Label>Date</Form.Label>
               <Form.Control required type="date" autoFocus />
               <Form.Control.Feedback type="invalid">
-                Please select a time.
+                Please select a valid date.
               </Form.Control.Feedback>
             </Form.Group>
             <Form.Group className="mb-3" controlId="time">
@@ -106,56 +122,3 @@ function CreateEventModal(props) {
 }
 
 export default CreateEventModal;
-
-/*
-<Form noValidate validated={validated} onSubmit={handleSubmit}>
-            <InputGroup hasValidation>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                <Form.Label>Name</Form.Label>
-                <Form.Control
-                    required
-                    type="name"
-                    placeholder="name"
-                    autoFocus
-                />
-                <Form.Control.Feedback type="invalid">
-                    Please choose a name.
-                </Form.Control.Feedback>
-                </Form.Group>
-            </InputGroup>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Time</Form.Label>
-              <Form.Control
-                required
-                type="time"
-                placeholder="HH:MM AM/PM"
-                autoFocus
-              />
-              <Form.Control.Feedback type="invalid">
-                Please select a time.
-              </Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Location</Form.Label>
-              <Form.Control
-                required
-                type="location"
-                autoFocus
-              />
-              <Form.Control.Feedback type="invalid">
-                Please name a location.
-              </Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group
-              required
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>Activity</Form.Label>
-              <Form.Control.Feedback type="invalid">
-                Please describe the activity.
-              </Form.Control.Feedback>
-              <Form.Control as="textarea" rows={2} />
-            </Form.Group>
-          </Form>
-*/
