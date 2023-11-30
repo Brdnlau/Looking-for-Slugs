@@ -20,16 +20,13 @@ function CreateEventModal(props) {
       event.stopPropagation();
     } else {
       //Check if date is in the past
-      let inputtedDate = new Date(document.querySelector("#date").value + "T00:00:00");
-      console.log(document.querySelector("#date").value)
-      console.log(inputtedDate);
+      let inputtedDate = new Date(document.querySelector("#date").value + "T" + document.querySelector("#time").value + ":00");
       let todayDate = new Date();
-      todayDate.setHours(0,0,0,0);
-      console.log(inputtedDate, todayDate);
       if (inputtedDate < todayDate || inputtedDate === todayDate) {
         event.preventDefault();
         event.stopPropagation();
         document.querySelector("#date").value = "";
+        document.querySelector("#time").value = "";
         setValidated(true);
         return;
       }
@@ -90,7 +87,7 @@ function CreateEventModal(props) {
                 autoFocus
               />
               <Form.Control.Feedback type="invalid">
-                Please select a time.
+                Please select a valid time.
               </Form.Control.Feedback>
             </Form.Group>
             <Form.Group className="mb-3" controlId="location">
