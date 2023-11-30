@@ -3,7 +3,7 @@ import { signInWithPopup } from "firebase/auth";
 import { doc, addDoc, deleteDoc, collection, getDocs, getDoc, updateDoc, setDoc, writeBatch } from 'firebase/firestore';
 import { provider, db } from "./firebase.js";
 
-async function firestoreCreateEvent(eventTitle, eventTime, eventLocation, eventDescription, creatorId) { // Added creatorId field to store eventcreator Id.
+async function firestoreCreateEvent(eventTitle, eventTime, eventDate, eventLocation, eventDescription, creatorId) { // Added creatorId field to store eventcreator Id.
     //granger
     try{
         console.log("Firestore: ", db);
@@ -15,6 +15,7 @@ async function firestoreCreateEvent(eventTitle, eventTime, eventLocation, eventD
         const docRef = await addDoc(collection(db, "eventPosts"), {
             title: eventTitle,
             time: eventTime,
+            date: eventDate,
             location: eventLocation,
             description: eventDescription,
             creator: creatorId, // added later. 
@@ -44,7 +45,7 @@ async function firestorePullEvents() {
         const firestoreEvents = [];
         querySnapshot.forEach(doc => {
             const usersJoined = getUsersJoinedEvent(doc.id);
-            const event = {id:doc.id, joined:usersJoined, ...doc.data()};
+            const event = {id:doc.id, joined:usersJoined, creator:doc.creator, ...doc.data()};
             firestoreEvents.push(event);
         });
 
@@ -75,9 +76,11 @@ async function firestorePullUserInfo(userId) {
                             id: eventId,
                             title: eventData.title,
                             time: eventData.time,
+                            date: eventData.date,
                             location: eventData.location,
                             description: eventData.description,
                             joined: eventData.joined || [],
+                            creator: eventData.creator,
                         };
                     }
                     return null;
@@ -93,9 +96,11 @@ async function firestorePullUserInfo(userId) {
                             id: eventId,
                             title: eventData.title,
                             time: eventData.time,
+                            date: eventData.date,
                             location: eventData.location,
                             description: eventData.description,
                             joined: eventData.joined || [],
+                            creator: eventData.creator,
                         };
                     }
                     return null;
@@ -249,12 +254,13 @@ async function signIn() {
     return null;
 }
 
-async function editPost(eventTitle, eventTime, eventLocation, eventDescription, eventId){
+async function editPost(eventTitle, eventTime, eventDate, eventLocation, eventDescription, eventId){
     // 
     const docRef = doc(db, "eventPosts", eventId);
     await updateDoc(docRef, {
         title: eventTitle,
         time: eventTime,
+        date: eventDate,
         location: eventLocation,
         description: eventDescription
     })

@@ -66,6 +66,7 @@ function Discover(){
                         title={events.title}
                         organizer={events.creator}
                         time={events.time}
+                        date={events.date}
                         location={events.location}
                         content={events.description}
                         memberCount={events.joined.length}

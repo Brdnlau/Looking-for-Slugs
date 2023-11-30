@@ -37,6 +37,9 @@ function ExpandedCard(props) {
                   <Card.Text class = "fix_margin">
                       <span class = "bold">Time:</span> <span class = "time">{props.time}</span>
                   </Card.Text>
+                  <Card.Text class = "fix_margin">
+                      <span class = "bold">Date:</span> <span class = "date">{props.date}</span>
+                  </Card.Text>
                   <Card.Text>
                       <span class = "bold">Location:</span> {props.location}
                   </Card.Text>

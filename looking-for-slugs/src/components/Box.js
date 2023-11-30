@@ -49,6 +49,9 @@ function Box(props) {
                         <span class = "bold">Time:</span> <span class = "time">{militaryToStandard(props.time)}</span>
                     </Card.Text>
                     <Card.Text>
+                        <span class = "bold">Date:</span> {props.date}
+                    </Card.Text>
+                    <Card.Text>
                         <span class = "bold">Location:</span> {props.location}
                     </Card.Text>
                     <Card.Text>
@@ -60,6 +63,7 @@ function Box(props) {
                         buttonText={props.buttonText}
                         title={props.title}
                         time={militaryToStandard(props.time)}
+                        date={props.date}
                         location={props.location}
                         content={props.content}
                         members={props.members}/>
