@@ -47,7 +47,7 @@ async function firestorePullEvents() {
   
       for (const doc of querySnapshot.docs) {
         const usersJoined = await getUsersJoinedEvent(doc.id);
-        const event = { id: doc.id, joined: usersJoined, ...doc.data() };
+        const event = { id: doc.id, ...doc.data(), joined: usersJoined};
         firestoreEvents.push(event);
       }
   

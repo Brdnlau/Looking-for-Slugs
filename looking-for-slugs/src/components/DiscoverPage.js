@@ -45,6 +45,7 @@ function Discover(){
         
         fetchData()
         .then((firestoreAllEvents) => {
+            console.log(firestoreAllEvents);
             setEventsList(firestoreAllEvents);
         });
 
@@ -62,7 +63,7 @@ function Discover(){
                 <Row>
                 {eventsList.map((events) => 
                 <Col sm={3}> 
-                    <Box id={events.id} buttonClick={user && events.joined.includes(user.uid) ? handleLeaveEvent : handleJoinEvent} buttonText={user && events.joined.includes(user.uid) ? "Leave" : "Join"}
+                    <Box id={events.id} buttonClick={user && events.joined.includes(user.displayName) ? handleLeaveEvent : handleJoinEvent} buttonText={user && events.joined.includes(user.displayName) ? "Leave" : "Join"}
                         title={events.title}
                         organizer={events.creator}
                         time={events.time}

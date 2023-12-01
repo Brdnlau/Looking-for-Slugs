@@ -66,7 +66,8 @@ function Box(props) {
                         date={props.date}
                         location={props.location}
                         content={props.content}
-                        members={props.members}/>
+                        members={props.members}
+                        organizer={props.organizer}/>
                 </Card.Footer>
             </Card>
         </div>
