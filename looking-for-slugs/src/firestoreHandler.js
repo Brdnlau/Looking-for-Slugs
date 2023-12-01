@@ -47,8 +47,7 @@ async function firestorePullEvents() {
   
       querySnapshot.forEach(async doc => {
         const usersJoined = await getUsersJoinedEvent(doc.id);
-        const usernames = usersJoined.map(user => user.username);
-        const event = { id: doc.id, ...doc.data(), joined: usernames };
+        const event = { id: doc.id, ...doc.data(), joined: usersJoined };
         firestoreEvents.push(event);
       });
   
@@ -58,6 +57,7 @@ async function firestorePullEvents() {
       return [];
     }
   }
+  
   
 
 
