@@ -125,7 +125,7 @@ async function getUsersJoinedEvent(eventId) {
         const usersRef = collection(db, 'users');
         const querySnapshot = await getDocs(usersRef);
         const users = [];
-        querySnapshot.forEach(async (doc) => {
+        querySnapshot.forEach(doc => {
             const userData = doc.data();
             if (userData.joinedEvents && userData.joinedEvents.includes(eventId) && userData.username) {
                 users.push({
