@@ -40,23 +40,24 @@ async function firestoreCreateEvent(eventTitle, eventTime, eventDate, eventLocat
 }
 
 async function firestorePullEvents() {
-    try{
-        const eventsCollection = collection(db, 'eventPosts');
-        const querySnapshot = await getDocs(eventsCollection);
-        const firestoreEvents = [];
-        querySnapshot.forEach(doc => {
-            const usersJoined = getUsersJoinedEvent(doc.id);
-            const event = {id:doc.id, joined:usersJoined, ...doc.data()};
-            firestoreEvents.push(event);
-        });
-
-        return firestoreEvents;
+    try {
+      const eventsCollection = collection(db, 'eventPosts');
+      const querySnapshot = await getDocs(eventsCollection);
+      const firestoreEvents = [];
+  
+      for (const doc of querySnapshot.docs) {
+        const usersJoined = await getUsersJoinedEvent(doc.id);
+        const event = { id: doc.id, joined: usersJoined, ...doc.data() };
+        firestoreEvents.push(event);
+      }
+  
+      return firestoreEvents;
+    } catch (e) {
+      console.error('Error fetching events:', e);
+      return [];
     }
-    catch (e) {
-        console.error("Error fetching events:",e);
-        return [];
-    }
-}
+  }
+  
 
 
 async function firestorePullUserInfo(userId) {
@@ -125,7 +126,7 @@ async function getUsersJoinedEvent(eventId) {
         const usersRef = collection(db, 'users');
         const querySnapshot = await getDocs(usersRef);
         const users = [];
-        querySnapshot.forEach(doc => {
+        querySnapshot.forEach(async (doc) => {
             const userData = doc.data();
             if (userData.joinedEvents && userData.joinedEvents.includes(eventId) && userData.username) {
                 users.push({
