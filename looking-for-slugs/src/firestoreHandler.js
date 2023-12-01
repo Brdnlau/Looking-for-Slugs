@@ -45,11 +45,12 @@ async function firestorePullEvents() {
       const querySnapshot = await getDocs(eventsCollection);
       const firestoreEvents = [];
   
-      querySnapshot.forEach(async doc => {
+      for (const doc of querySnapshot.docs) {
         const usersJoined = await getUsersJoinedEvent(doc.id);
-        const event = { id: doc.id, ...doc.data(), joined: usersJoined };
+        const usernames = usersJoined.map(user => user.username);
+        const event = { id: doc.id, ...doc.data(), joined: usernames };
         firestoreEvents.push(event);
-      });
+      }
   
       return firestoreEvents;
     } catch (e) {
@@ -57,6 +58,7 @@ async function firestorePullEvents() {
       return [];
     }
   }
+  
   
   
 
@@ -131,7 +133,10 @@ async function getUsersJoinedEvent(eventId) {
       querySnapshot.forEach(doc => {
         const userData = doc.data();
         if (userData.joinedEvents && userData.joinedEvents.includes(eventId) && userData.username) {
-          users.push(userData.username);
+          users.push({
+            id: doc.id,
+            username: userData.username,
+          });
         }
       });
   
@@ -141,7 +146,7 @@ async function getUsersJoinedEvent(eventId) {
       return [];
     }
   }
-
+  
 
 
 async function firestoreAddUserToEvent(userId, eventId) {
