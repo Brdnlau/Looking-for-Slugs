@@ -3,7 +3,7 @@ import { signInWithPopup } from "firebase/auth";
 import { doc, addDoc, deleteDoc, collection, getDocs, getDoc, updateDoc, setDoc, writeBatch } from 'firebase/firestore';
 import { provider, db } from "./firebase.js";
 
-async function firestoreCreateEvent(eventTitle, eventTime, eventDate, eventLocation, eventDescription, creatorId) { // Added creatorId field to store eventcreator Id.
+async function firestoreCreateEvent(eventTitle, eventTime, eventDate, eventLocation, eventDescription, creatorId, creatorName) { // Added creatorId field to store eventcreator Id.
     //granger
     try{
         console.log("Firestore: ", db);
@@ -18,7 +18,8 @@ async function firestoreCreateEvent(eventTitle, eventTime, eventDate, eventLocat
             date: eventDate,
             location: eventLocation,
             description: eventDescription,
-            creator: creatorId, // added later. 
+            creatorID: creatorId, // added later. 
+            creatorName: creatorName,
             joined: []  // added later - array of users who have joined, not including the creator.           
         });
         console.log("Document written with title: ", eventTitle);
@@ -45,7 +46,7 @@ async function firestorePullEvents() {
         const firestoreEvents = [];
         querySnapshot.forEach(doc => {
             const usersJoined = getUsersJoinedEvent(doc.id);
-            const event = {id:doc.id, joined:usersJoined, creator:doc.creator, ...doc.data()};
+            const event = {id:doc.id, joined:usersJoined, ...doc.data()};
             firestoreEvents.push(event);
         });
 
@@ -80,7 +81,8 @@ async function firestorePullUserInfo(userId) {
                             location: eventData.location,
                             description: eventData.description,
                             joined: eventData.joined || [],
-                            creator: eventData.creator,
+                            creatorID: eventData.creatorID,
+                            creatorName: eventData.creatorName,
                         };
                     }
                     return null;
@@ -100,7 +102,8 @@ async function firestorePullUserInfo(userId) {
                             location: eventData.location,
                             description: eventData.description,
                             joined: eventData.joined || [],
-                            creator: eventData.creator,
+                            creatorID: eventData.creatorID,
+                            creatorName: eventData.creatorName,
                         };
                     }
                     return null;
