@@ -22,7 +22,7 @@ function Discover(){
         } else {
             if (firestoreAddUserToEvent(user.uid, docID)) {
                 setEventsList(prevEventsList =>
-                    prevEventsList.map(event => event.id === docID ? { ...event, joined: [user.uid, ...event.joined]} : event));
+                    prevEventsList.map(event => event.id === docID ? { ...event, joined: [user.displayName, ...event.joined]} : event));
             } else{
                 alert("Error joining Event");
             }
@@ -32,7 +32,7 @@ function Discover(){
     function handleLeaveEvent(docID) {
         if (firestoreLeaveEvent(user.uid, docID)) {
             setEventsList(prevEventsList =>
-                prevEventsList.map(event => event.id === docID ? { ...event, joined: event.joined.filter(id => id !== user.uid)} : event));
+                prevEventsList.map(event => event.id === docID ? { ...event, joined: event.joined.filter(id => id !== user.displayName)} : event));
         } else{
             alert("Error leaving Event");
         }

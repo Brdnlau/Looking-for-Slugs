@@ -37,7 +37,8 @@ function CreateEventModal(props) {
         document.querySelector("#date").value,
         document.querySelector("#location").value,
         document.querySelector("#description").value,
-        user.displayName
+        user.uid,
+        user.displayName 
       );
       console.log("Submitted event to Firestore");
     }
