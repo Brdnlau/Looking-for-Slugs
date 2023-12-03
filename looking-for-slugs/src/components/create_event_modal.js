@@ -21,7 +21,30 @@ function CreateEventModal(props) {
     } else {
       //Check if date is in the past
       let inputtedDate = new Date(document.querySelector("#date").value + "T" + document.querySelector("#time").value + ":00");
+      let inputtedCapacity = new Date(document.querySelector("#capacity").value);
       let todayDate = new Date();
+
+      function isInt(value) {
+        return !isNaN(value) && (function(x) { return (x | 0) === x; })(parseFloat(value));
+      }
+
+      if (isInt(inputtedCapacity) === true) {
+        console.log("test");
+        if (Number(inputtedCapacity) < 0 ||  Number(inputtedCapacity) > 99) {
+          event.preventDefault();
+          event.stopPropagation();
+          document.querySelector("#capacity").value = "";
+          setValidated(true);
+          return;
+        }
+      } else {
+        event.preventDefault();
+        event.stopPropagation();
+        document.querySelector("#capacity").value = "";
+        setValidated(true);
+        return;
+      }
+
       if (inputtedDate < todayDate || inputtedDate === todayDate) {
         event.preventDefault();
         event.stopPropagation();
@@ -122,6 +145,13 @@ function CreateEventModal(props) {
               <Form.Control as="textarea" rows={2} required />
               <Form.Control.Feedback type="invalid">
                 Please describe the activity.
+              </Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group required className="mb-3" controlId="capacity">
+            <Form.Label>Capacity</Form.Label>
+              <Form.Control required type="capacity" placeholder="30" autoFocus />
+              <Form.Control.Feedback type="invalid">
+                Please name a capacity limit in between 0 - 99.
               </Form.Control.Feedback>
             </Form.Group>
           </Form>

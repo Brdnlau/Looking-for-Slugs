@@ -5,3 +5,11 @@
 .expand_div:hover{
     cursor: pointer;
 }
+
+.map iframe {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    width: auto\9;
+    min-height: 50vh;
+}

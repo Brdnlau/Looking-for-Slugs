@@ -32,10 +32,16 @@
 
 .top_section span {
     position: absolute;
-    bottom: 12px;
+    bottom: 5px;
     right: 5px;
 }
 
 .bold{
     font-weight: bold;
+}
+
+.top_image {
+    max-width: 100%;
+    height: auto;
+    width: auto\9;
 }

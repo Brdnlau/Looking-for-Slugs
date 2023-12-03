@@ -22,7 +22,7 @@
     font-size: calc(6px + 1vw);
 }
 
-img {
+.Rows img {
     max-width: 100%;
     height: auto;
     width: auto\9;
