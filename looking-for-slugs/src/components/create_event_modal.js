@@ -93,9 +93,28 @@ function CreateEventModal(props) {
             </Form.Group>
             <Form.Group className="mb-3" controlId="location">
               <Form.Label>Location</Form.Label>
-              <Form.Control required type="location" autoFocus />
+              <Form.Control required as="select" className="form-select">
+                <option value={''}>--Please Select a Location--</option>
+                <option>Rachel Carson College</option>
+                <option>Oaks College</option>
+                <option>Porter College</option>
+                <option>Kresge College</option>
+                <option>Merrill College</option>
+                <option>College 9</option>
+                <option>John R. Lewis College</option>
+                <option>Cowell College</option>
+                <option>Stevenson College</option>
+                <option>John R. Lewis College</option>
+                <option>East Field</option>
+                <option>West Field</option>
+                <option>McHenry Library</option>
+                <option>Science and Engineering Library</option>
+                <option>Stevenson Library</option>
+                <option>Porter Meadow</option>
+              </Form.Control>
+              {/* <Form.Control required type="location" autoFocus /> */}
               <Form.Control.Feedback type="invalid">
-                Please name a location.
+                Please select a location.
               </Form.Control.Feedback>
             </Form.Group>
             <Form.Group required className="mb-3" controlId="description">
