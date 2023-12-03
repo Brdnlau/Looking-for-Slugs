@@ -21,7 +21,7 @@ function CreateEventModal(props) {
     } else {
       //Check if date is in the past
       let inputtedDate = new Date(document.querySelector("#date").value + "T" + document.querySelector("#time").value + ":00");
-      let inputtedCapacity = new Date(document.querySelector("#capacity").value);
+      let inputtedCapacity = document.querySelector("#capacity").value;
       let todayDate = new Date();
 
       function isInt(value) {
