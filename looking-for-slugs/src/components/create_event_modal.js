@@ -96,7 +96,7 @@ function CreateEventModal(props) {
               <Form.Control required as="select" className="form-select">
                 <option value={''}>--Please Select a Location--</option>
                 <option>Rachel Carson College</option>
-                <option>Oaks College</option>
+                <option>Oakes College</option>
                 <option>Porter College</option>
                 <option>Kresge College</option>
                 <option>Merrill College</option>

@@ -61,20 +61,6 @@ function ExpandedCard(props) {
                 </div>
               </Card.Footer>
             </Card>
-          {/* <Card.Body>
-              <Card.Text>
-                  <span class = "bold">Owner:</span> Owner
-              </Card.Text>
-              <Card.Text class = "fix_margin">
-                  <span class = "bold">Time:</span> <span class = "time">{props.time}</span>
-              </Card.Text>
-              <Card.Text>
-                  <span class = "bold">Location:</span> {props.location}
-              </Card.Text>
-              <Card.Text>
-                  <span class = "bold">Description:</span> {props.content}
-              </Card.Text>
-          </Card.Body> */}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
