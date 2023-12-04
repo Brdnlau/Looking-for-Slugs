@@ -60,6 +60,7 @@ function CreateEventModal(props) {
         document.querySelector("#date").value,
         document.querySelector("#location").value,
         document.querySelector("#description").value,
+        document.querySelector("#capacity").value,
         user.uid,
         user.displayName 
       );
