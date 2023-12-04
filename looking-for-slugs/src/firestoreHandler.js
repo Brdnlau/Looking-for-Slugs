@@ -159,9 +159,11 @@ async function firestoreAddUserToEvent(userId, eventId) {
         const userDoc = await getDoc(userRef);
         const eventDoc = await getDoc(eventRef);
         if (eventDoc.exists() && userDoc.exists()) { 
-           const userData = userDoc.data();
-            const eventData = eventDoc.data(); 
-            if (!eventData.joined.includes(userId)) {
+            const userData = userDoc.data();
+            const eventData = eventDoc.data();
+            const numJoined = eventData.joined.length;
+            console.log("Users joined: ", numJoined);
+            if (!eventData.joined.includes(userId) & numJoined < eventData.capacity) {
                 eventData.joined.push(userId);
                 await updateDoc(eventRef, {joined: eventData.joined});
                 if(!userData.joinedEvents.includes(eventId)) {
