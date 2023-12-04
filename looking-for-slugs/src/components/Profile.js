@@ -39,24 +39,26 @@ export default function Profile(props) {
             setJoinedEvents(userInfo.joinedEvents.map((events) =>  
             <Box id={events.id} buttonClick={handleLeaveEvent} buttonText="Leave"
                 title={events.title}
-                organizer={events.creator}
+                organizer={events.creatorName}
                 time={events.time}
                 date={events.date}
                 location={events.location}
                 content={events.description}
                 memberCount={events.joined.length}
                 members={events.joined}
+                capacity={events.capacity}
             ></Box>))
             setCreatedEvents(userInfo.createdEvents.map((events) =>  
             <Box id={events.id} buttonClick={handleDeleteEvent} buttonText="Delete"
                 title={events.title}
-                organizer={events.creator}
+                organizer={events.creatorName}
                 time={events.time}
                 date={events.date}
                 location={events.location}
                 content={events.description}
                 memberCount={events.joined.length}
                 members={events.joined}
+                capacity={events.capacity}
             ></Box>))
         }, []);
 

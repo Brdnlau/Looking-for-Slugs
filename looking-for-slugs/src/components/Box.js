@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Badge from 'react-bootstrap/Badge';
 import CardFooter from 'react-bootstrap/esm/CardFooter';
 import ExpandedCard from './ExpandedCard'
+import { importLocationImages } from '../helper_functions/ImageMapping'; 
 
 function Box(props) {
     function handleClick() {
@@ -34,10 +35,10 @@ function Box(props) {
         <div class = "margins">
             <Card>
                 <div class = "top_section">
-                    <Card.Img variant="top" class = "top_image" src={fillerImage} />
+                    <Card.Img variant="top" class = "top_image" src={importLocationImages()[props.location][0]} />
                     <Button variant="light" onClick={handleClick}>{props.buttonText}</Button>{' '}
                     <Badge pill bg="light" text="dark">
-                        {props.memberCount} / 30
+                        {props.memberCount} / {props.capacity}
                     </Badge>
                 </div>
                 <Card.Body>
@@ -67,7 +68,9 @@ function Box(props) {
                         location={props.location}
                         content={props.content}
                         members={props.members}
-                        organizer={props.organizer}/>
+                        organizer={props.organizer}
+                        image={importLocationImages()[props.location][0]}
+                        map={importLocationImages()[props.location][1]}/>
                 </Card.Footer>
             </Card>
         </div>

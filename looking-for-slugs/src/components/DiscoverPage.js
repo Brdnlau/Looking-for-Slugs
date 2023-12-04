@@ -16,8 +16,11 @@ function Discover(){
     function handleJoinEvent(docID) {
         if (!user) {
             signIn().then((newUser) => 
-            {firestoreAddUserToEvent(newUser.uid, docID);
-            setEventsList();
+            {if (firestoreAddUserToEvent(newUser.uid, docID)){
+                setEventsList();
+            } else {
+                alert("Error joining Event");
+            }
             });
         } else {
             if (firestoreAddUserToEvent(user.uid, docID)) {
@@ -65,13 +68,14 @@ function Discover(){
                 <Col sm={3}> 
                     <Box id={events.id} buttonClick={user && events.joined.includes(user.displayName) ? handleLeaveEvent : handleJoinEvent} buttonText={user && events.joined.includes(user.displayName) ? "Leave" : "Join"}
                         title={events.title}
-                        organizer={events.creator}
+                        organizer={events.creatorName}
                         time={events.time}
                         date={events.date}
                         location={events.location}
                         content={events.description}
                         memberCount={events.joined.length}
                         members={events.joined}
+                        capacity={events.capacity}
                     ></Box>
                 </Col>)}
                 </Row>
