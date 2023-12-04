@@ -3,7 +3,7 @@ import { signInWithPopup } from "firebase/auth";
 import { doc, addDoc, deleteDoc, collection, getDocs, getDoc, updateDoc, setDoc, writeBatch } from 'firebase/firestore';
 import { provider, db } from "./firebase.js";
 
-async function firestoreCreateEvent(eventTitle, eventTime, eventDate, eventLocation, eventDescription, creatorId, creatorName) { // Added creatorId field to store eventcreator Id.
+async function firestoreCreateEvent(eventTitle, eventTime, eventDate, eventLocation, eventDescription, eventCapacity, creatorId, creatorName) { // Added creatorId field to store eventcreator Id.
     //granger
     try{
         console.log("Firestore: ", db);
@@ -18,6 +18,7 @@ async function firestoreCreateEvent(eventTitle, eventTime, eventDate, eventLocat
             date: eventDate,
             location: eventLocation,
             description: eventDescription,
+            capacity: eventCapacity,
             creatorID: creatorId, // added later. 
             creatorName: creatorName,
             joined: []  // added later - array of users who have joined, not including the creator.           
@@ -84,6 +85,7 @@ async function firestorePullUserInfo(userId) {
                             date: eventData.date,
                             location: eventData.location,
                             description: eventData.description,
+                            capacity: eventData.capacity,
                             joined: eventData.joined || [],
                             creatorID: eventData.creatorID,
                             creatorName: eventData.creatorName,
@@ -105,6 +107,7 @@ async function firestorePullUserInfo(userId) {
                             date: eventData.date,
                             location: eventData.location,
                             description: eventData.description,
+                            capacity: eventData.capacity,
                             joined: eventData.joined || [],
                             creatorID: eventData.creatorID,
                             creatorName: eventData.creatorName,
@@ -165,7 +168,7 @@ async function firestoreAddUserToEvent(userId, eventId) {
                     userData.joinedEvents.push(eventId);
                     await updateDoc(userRef, {joinedEvents: userData.joinedEvents});
                 }
-                console.log("User ", userId," has been added to even ", eventId);
+                console.log("User ", userId," has been added to event ", eventId);
                 return true;
             } else{
                 console.log("User", userId, " is already in ", eventId);
@@ -263,7 +266,7 @@ async function signIn() {
     return null;
 }
 
-async function editPost(eventTitle, eventTime, eventDate, eventLocation, eventDescription, eventId){
+async function editPost(eventTitle, eventTime, eventDate, eventLocation, eventDescription, eventCapacity, eventId){
     // 
     const docRef = doc(db, "eventPosts", eventId);
     await updateDoc(docRef, {
@@ -271,7 +274,8 @@ async function editPost(eventTitle, eventTime, eventDate, eventLocation, eventDe
         time: eventTime,
         date: eventDate,
         location: eventLocation,
-        description: eventDescription
+        description: eventDescription,
+        capacity: eventCapacity
     })
 }
 
