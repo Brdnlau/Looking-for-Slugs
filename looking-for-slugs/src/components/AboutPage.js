@@ -42,7 +42,7 @@ function AboutPage() {
                     </div>
                 </Col>
             </Row>
-            <Row className="Rows">
+            <Row className="Rows about_images">
                 <Col sm={4}>
                     <img src={teamworkImg}></img>
                 </Col>
