@@ -5,6 +5,8 @@ import Modal from "react-bootstrap/Modal";
 import { firestoreCreateEvent } from "../firestoreHandler";
 import { auth } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
+import * as imageFuncs from '../helper_functions/ImageMapping'
+
 
 function CreateEventModal(props) {
   const [show, setShow] = useState(false);
@@ -29,7 +31,6 @@ function CreateEventModal(props) {
       }
 
       if (isInt(inputtedCapacity) === true) {
-        console.log("test");
         if (Number(inputtedCapacity) < 0 ||  Number(inputtedCapacity) > 99) {
           event.preventDefault();
           event.stopPropagation();
@@ -71,6 +72,8 @@ function CreateEventModal(props) {
   };
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const locationImages = imageFuncs.importLocationImages();
 
   return (
     <>
