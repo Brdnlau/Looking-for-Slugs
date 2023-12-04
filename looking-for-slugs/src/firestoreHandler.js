@@ -21,8 +21,9 @@ async function firestoreCreateEvent(eventTitle, eventTime, eventDate, eventLocat
             capacity: eventCapacity,
             creatorID: creatorId, // added later. 
             creatorName: creatorName,
-            joined: []  // added later - array of users who have joined, not including the creator.           
+            joined: []  // added later - array of users who have joined, not including the creator.     
         });
+
         console.log("Document written with title: ", eventTitle);
         const userRef = doc(db, 'users', creatorId);
         const userDoc = await getDoc(userRef);
@@ -31,7 +32,8 @@ async function firestoreCreateEvent(eventTitle, eventTime, eventDate, eventLocat
             const createdEvents = userData.createdEvents || [];
             createdEvents.push(docRef.id);
             await updateDoc(userRef,{createdEvents});
-        } else {
+        }
+        else {
             console.log("Creator doesn't exist.");
         }
     }
@@ -42,41 +44,36 @@ async function firestoreCreateEvent(eventTitle, eventTime, eventDate, eventLocat
 
 async function firestorePullEvents() {
     try {
-      const eventsCollection = collection(db, 'eventPosts');
-      const querySnapshot = await getDocs(eventsCollection);
-      const firestoreEvents = [];
-
-      const new_date = new Date();
-      const todayDate = new_date.getDate();
-      const todayMonth = new_date.getMonth() + 1; // January is 0, not 1
-      const todayYear = new_date.getFullYear();
-      console.log("Today's date: Month: ", todayMonth, " Date: ", todayDate, " Year: ", todayYear);
-      for (const doc of querySnapshot.docs) {
-        const usersJoined = await getUsersJoinedEvent(doc.id);
-        const usernames = usersJoined.map(user => user.username);
-        const event = { id: doc.id, ...doc.data(), joined: usernames };
-        const eventDate = event.date.split("-") // [year, month, day]
-        console.log("Event ", event.id, "'s date: ", eventDate);
-        if( todayYear > eventDate[0] || ( todayMonth == eventDate[1] && todayDate > eventDate[2] ) || todayMonth >= eventDate[1]) {
-            console.log("Event ", event.id, " has expired. Thus, deleted");
-            fireStoreDeleteEvent(event.id);
+        const eventsCollection = collection(db, 'eventPosts');
+        const querySnapshot = await getDocs(eventsCollection);
+        const firestoreEvents = [];
+        const newDate = new Date();
+        const todayDate = newDate.getDate();
+        const todayMonth = newDate.getMonth() + 1; // January is 0, not 1
+        const todayYear = newDate.getFullYear();
+        console.log("Today's date: Month: ", todayMonth, " Date: ", todayDate, " Year: ", todayYear);
+      
+        for (const doc of querySnapshot.docs) {
+            const usersJoined = await getUsersJoinedEvent(doc.id);
+            const usernames = usersJoined.map(user => user.username);
+            const event = { id: doc.id, ...doc.data(), joined: usernames };
+            const eventDate = event.date.split("-") // [year, month, day]
+            console.log("Event ", event.id, "'s date: ", eventDate);
+            if( todayYear > eventDate[0] || ( todayMonth == eventDate[1] && todayDate > eventDate[2] ) || todayMonth >= eventDate[1]) {
+                console.log("Event ", event.id, " has expired. Thus, deleted");
+                fireStoreDeleteEvent(event.id);
+            }
+            else{
+               firestoreEvents.push(event);
+            }
         }
-        else{
-            firestoreEvents.push(event);
-        }
-        
-      }
-  
-      return firestoreEvents;
-    } catch (e) {
-      console.error('Error fetching events:', e);
-      return [];
+        return firestoreEvents;
     }
-  }
-  
-  
-  
-
+    catch (e) {
+        console.error('Error fetching events:', e);
+        return [];
+    }
+}
 
 async function firestorePullUserInfo(userId) {
     try {
@@ -131,11 +128,13 @@ async function firestorePullUserInfo(userId) {
                 })
             );
             return { joinedEvents: joinedEventsDetails, createdEvents: createdEventsDetails };
-        } else {
+        }
+        else {
             console.log('User document does not exist');
             return null;
         }
-    } catch (e) {
+    }
+    catch (e) {
         console.error('Error fetching user information:', e);
         return null;
     }
@@ -143,28 +142,26 @@ async function firestorePullUserInfo(userId) {
 
 async function getUsersJoinedEvent(eventId) {
     try {
-      const usersRef = collection(db, 'users');
-      const querySnapshot = await getDocs(usersRef);
-      const users = [];
+        const usersRef = collection(db, 'users');
+        const querySnapshot = await getDocs(usersRef);
+        const users = [];
   
-      querySnapshot.forEach(doc => {
-        const userData = doc.data();
-        if (userData.joinedEvents && userData.joinedEvents.includes(eventId) && userData.username) {
-          users.push({
-            id: doc.id,
-            username: userData.username,
-          });
-        }
-      });
-  
-      return users;
-    } catch (e) {
-      console.error('Error fetching users:', e);
-      return [];
+        querySnapshot.forEach(doc => {
+            const userData = doc.data();
+            if (userData.joinedEvents && userData.joinedEvents.includes(eventId) && userData.username) {
+                users.push({
+                    id: doc.id,
+                    userDatasername: userData.username,
+                });
+            }
+        });
+        return users;
     }
-  }
-  
-
+    catch (e) {
+        console.error('Error fetching users:', e);
+        return [];
+    }
+}
 
 async function firestoreAddUserToEvent(userId, eventId) {
     try{
@@ -192,17 +189,19 @@ async function firestoreAddUserToEvent(userId, eventId) {
                 }
                 console.log("User ", userId," has been added to event ", eventId);
                 return true;
-            } else{
+            }
+            else{
                 console.log("User", userId, " is already in ", eventId);
             }
-        } else{
+        }
+        else{
             console.log("Event or user does not exist.");
         }
-    } catch(e){
+    }
+    catch(e){
         console.error("Error adding user to event: ", e);
     }
     return false;
-
 } 
 
 async function firestoreLeaveEvent(userId, eventId) {
@@ -223,7 +222,8 @@ async function firestoreLeaveEvent(userId, eventId) {
         }
         console.log("User ", userId,  " has left event ", eventId);
         return true;
-    } catch (e) {
+    }
+    catch (e) {
         console.error('Error leaving event:', e);
     }
     return false;
@@ -254,10 +254,12 @@ async function fireStoreDeleteEvent(eventId) {
             await batch.commit();
             console.log("Event deleted:", eventId);
             return true;
-        } else {
+        }
+        else {
             console.log("Event does not exist:", eventId);
         }
-    } catch (e) {
+    }
+    catch (e) {
         console.error("Error deleting event:", e);
     }
     return false;
@@ -278,18 +280,19 @@ async function signIn() {
             };
             await setDoc(userRef, userFields);
             console.log("Added ", userId, " to user collection.");
-        } else{
+        }
+        else{
             console.log("User ", userId, " already exists in collection.");
         }
         return result.user;
-    } catch(e) {
+    }
+    catch(e) {
         console.error(e);
     }
     return null;
 }
 
 async function editPost(eventTitle, eventTime, eventDate, eventLocation, eventDescription, eventCapacity, eventId){
-    // 
     const docRef = doc(db, "eventPosts", eventId);
     await updateDoc(docRef, {
         title: eventTitle,
@@ -300,6 +303,5 @@ async function editPost(eventTitle, eventTime, eventDate, eventLocation, eventDe
         capacity: eventCapacity
     })
 }
-
 
 export {firestoreCreateEvent, firestorePullEvents, fireStoreDeleteEvent, getUsersJoinedEvent, firestoreAddUserToEvent, firestorePullUserInfo, signIn, firestoreLeaveEvent, editPost}
