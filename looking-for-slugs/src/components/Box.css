@@ -22,6 +22,8 @@
 
 .top_section{
     position: relative;
+    max-height: 20vh;
+    overflow: hidden;
 }
 
 .top_section button {
@@ -41,6 +43,8 @@
 }
 
 .top_image {
+    width:100%;
+    min-height:12em;
     max-width: 100%;
     height: auto;
     width: auto\9;

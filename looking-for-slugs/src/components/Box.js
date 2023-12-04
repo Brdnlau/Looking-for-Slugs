@@ -50,7 +50,7 @@ function Box(props) {
                         <span class = "bold">Time:</span> <span class = "time">{militaryToStandard(props.time)}</span>
                     </Card.Text>
                     <Card.Text>
-                        <span class = "bold date">Date:</span> {props.date}
+                        <span class = "bold">Date:</span> <span class = "date">{props.date}</span>
                     </Card.Text>
                     <Card.Text>
                         <span class = "bold">Location:</span> {props.location}
