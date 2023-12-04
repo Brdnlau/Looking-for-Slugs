@@ -45,12 +45,26 @@ async function firestorePullEvents() {
       const eventsCollection = collection(db, 'eventPosts');
       const querySnapshot = await getDocs(eventsCollection);
       const firestoreEvents = [];
-  
+
+      const new_date = new Date();
+      const todayDate = new_date.getDate();
+      const todayMonth = new_date.getMonth() + 1; // January is 0, not 1
+      const todayYear = new_date.getFullYear();
+      console.log("Today's date: Month: ", todayMonth, " Date: ", todayDate, " Year: ", todayYear);
       for (const doc of querySnapshot.docs) {
         const usersJoined = await getUsersJoinedEvent(doc.id);
         const usernames = usersJoined.map(user => user.username);
         const event = { id: doc.id, ...doc.data(), joined: usernames };
-        firestoreEvents.push(event);
+        const eventDate = event.date.split("-") // [year, month, day]
+        console.log("Event ", event.id, "'s date: ", eventDate);
+        if( todayYear > eventDate[0] || ( todayMonth == eventDate[1] && todayDate > eventDate[2] ) || todayMonth >= eventDate[1]) {
+            console.log("Event ", event.id, " has expired. Thus, deleted");
+            fireStoreDeleteEvent(event.id);
+        }
+        else{
+            firestoreEvents.push(event);
+        }
+        
       }
   
       return firestoreEvents;
