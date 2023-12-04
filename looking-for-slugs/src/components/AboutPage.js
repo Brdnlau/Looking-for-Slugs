@@ -3,9 +3,9 @@ import './AboutPage.css';
 import NavbarHome from './Navbar';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/esm/Row';
-import firstimg from '../components/images/teamwork.jpg';
-import sndimg from '../components/images/brainstorm.jpg';
-import thirdimg from '../components/images/team.jpg';
+import teamworkImg from '../components/images/about_page_images/teamwork.jpg';
+import brainstormImg from '../components/images/about_page_images/brainstorm.jpg';
+import teamImg from '../components/images/about_page_images/team.jpg';
 import { auth } from "../firebase"
 
 function AboutPage() {
@@ -44,13 +44,13 @@ function AboutPage() {
             </Row>
             <Row className="Rows">
                 <Col sm={4}>
-                    <img src={firstimg}></img>
+                    <img src={teamworkImg}></img>
                 </Col>
                 <Col sm={4}>
-                    <img src={sndimg}></img>
+                    <img src={brainstormImg}></img>
                 </Col>
                 <Col sm={4}>
-                    <img src={thirdimg}></img>
+                    <img src={teamImg}></img>
                 </Col>
             </Row>
         </div>
