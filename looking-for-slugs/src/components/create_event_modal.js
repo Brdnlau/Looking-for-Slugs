@@ -128,7 +128,7 @@ function CreateEventModal(props) {
                 <option>Kresge College</option>
                 <option>Merrill College</option>
                 <option>College 9</option>
-                <option>John R. Lewis College</option>
+                <option>Crown College</option>
                 <option>Cowell College</option>
                 <option>Stevenson College</option>
                 <option>John R. Lewis College</option>
