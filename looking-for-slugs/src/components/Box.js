@@ -42,7 +42,10 @@ function Box(props) {
           />
           <Button variant="light" onClick={handleClick}>
             {props.buttonText}
-          </Button>{" "}
+          </Button>
+          <Button className = "edit_button" variant="light">
+            Edit
+          </Button>
           <Badge pill bg="light" text="dark">
             {props.memberCount} / {props.capacity}
           </Badge>

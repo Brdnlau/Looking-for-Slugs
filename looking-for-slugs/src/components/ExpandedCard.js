@@ -24,8 +24,8 @@ function ExpandedCard(props) {
         </Modal.Header>
         <Modal.Body>
           <Card>
-            <div class="top_section">
-              <Card.Img variant="top" class="top_image" src={props.image} />
+            <div class="top_section_expanded">
+              <Card.Img variant="top" class="expanded_top_image" src={props.image} />
             </div>
             <Card.Body>
               <Card.Text>

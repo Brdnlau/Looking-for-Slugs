@@ -32,6 +32,13 @@
   right: 5px;
 }
 
+.edit_button {
+  position: absolute !important; 
+  top: 5px !important;
+  left: 5px !important;
+  width:fit-content;
+}
+
 .top_section span {
   position: absolute;
   bottom: 5px;

@@ -13,3 +13,14 @@
   width: auto\9;
   min-height: 50vh;
 }
+
+.expanded_top_image {
+  width: 100%;
+  min-height: 100%;
+}
+
+.top_section_expanded{
+  position: relative;
+  max-height: 40vh;
+  overflow: hidden;
+}
