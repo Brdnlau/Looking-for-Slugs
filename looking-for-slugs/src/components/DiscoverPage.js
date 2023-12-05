@@ -13,6 +13,7 @@ import {
   firestoreLeaveEvent,
 } from "../firestoreHandler";
 import { CreateEventButton } from "./CreateEventButton";
+import { importLocationImages } from "../helper_functions/ImageMapping";
 
 function Discover() {
   const [user] = useAuthState(auth);
@@ -92,7 +93,7 @@ function Discover() {
                 memberCount={events.joined.length}
                 members={events.joined}
                 capacity={events.capacity}
-                showPrimaryButton={(events.joined.length - events.capacity == 0) && !(events.joined.includes(user.displayName)) || !user ? false : true}
+                showPrimaryButton={!user || (events.joined.length - events.capacity == 0) && !(events.joined.includes(user.displayName))? false : true}
               ></Box>
             </Col>
           ))}
