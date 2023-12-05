@@ -3,7 +3,7 @@ import { signInWithPopup } from "firebase/auth";
 import { doc, addDoc, deleteDoc, collection, getDocs, getDoc, updateDoc, setDoc, writeBatch } from 'firebase/firestore';
 import { provider, db } from "./firebase.js";
 
-async function firestoreCreateEvent(eventTitle, eventTime, eventDate, eventLocation, eventDescription, eventCapacity, creatorId, creatorName) { // Added creatorId field to store eventcreator Id.
+async function firestoreCreateEvent({eventTitle, eventTime, eventDate, eventLocation, eventDescription, eventCapacity, creatorId, creatorName}) { // Added creatorId field to store eventcreator Id.
     //granger
     try{
         console.log("Firestore: ", db);
@@ -51,14 +51,14 @@ async function firestorePullEvents() {
         const todayDate = newDate.getDate();
         const todayMonth = newDate.getMonth() + 1; // January is 0, not 1
         const todayYear = newDate.getFullYear();
-        console.log("Today's date: Month: ", todayMonth, " Date: ", todayDate, " Year: ", todayYear);
+        // console.log("Today's date: Month: ", todayMonth, " Date: ", todayDate, " Year: ", todayYear);
       
         for (const doc of querySnapshot.docs) {
             const usersJoined = await getUsersJoinedEvent(doc.id);
             const usernames = usersJoined.map(user => user.userDatasername);
             const event = { id: doc.id, ...doc.data(), joined: usernames };
             const eventDate = event.date.split("-") // [year, month, day]
-            console.log("Event ", event.id, "'s date: ", eventDate);
+            //console.log("Event ", event.id, "'s date: ", eventDate);
             if( todayYear > eventDate[0] || (todayYear >= eventDate[0] && (( todayMonth == eventDate[1] && todayDate > eventDate[2] ) || (todayMonth > eventDate[1])))) {
                 console.log("Event ", event.id, " has expired. Thus, deleted");
                 fireStoreDeleteEvent(event.id);
@@ -297,7 +297,7 @@ async function signIn() {
     return null;
 }
 
-async function editPost(eventTitle, eventTime, eventDate, eventLocation, eventDescription, eventCapacity, eventId){
+async function editPost({eventTitle, eventTime, eventDate, eventLocation, eventDescription, eventCapacity, eventId}){
     const docRef = doc(db, "eventPosts", eventId);
     await updateDoc(docRef, {
         title: eventTitle,

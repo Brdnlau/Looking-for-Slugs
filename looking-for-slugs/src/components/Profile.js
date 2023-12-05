@@ -58,7 +58,8 @@ export default function Profile(props) {
             memberCount={events.joined.length}
             members={events.joined}
             capacity={events.capacity}
-          ></Box>
+            showPrimaryButton={true}
+            ></Box>
         ))
       );
       setCreatedEvents(
@@ -76,6 +77,8 @@ export default function Profile(props) {
             memberCount={events.joined.length}
             members={events.joined}
             capacity={events.capacity}
+            edit={true}
+            showPrimaryButton={true}
           ></Box>
         ))
       );

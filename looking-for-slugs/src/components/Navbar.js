@@ -7,6 +7,7 @@ import LoginButton from "./LoginButton";
 import { Link } from "react-router-dom";
 import CreateEventModal from "./create_event_modal";
 import ProfileDropdown from "./ProfileDropdown";
+import { CreateEventButton } from "./CreateEventButton";
 
 function NavbarForHome(props) {
   return (
@@ -31,11 +32,6 @@ function NavbarForHome(props) {
             <Nav.Link eventKey={3} as={Link} to="/discover">
               Discover
             </Nav.Link>
-            {props.user ? 
-            <Nav.Link>
-              <CreateEventModal class="event_creation_button" />
-            </Nav.Link> : <></>
-            }
             <Nav.Link eventKey={5} as={Link} to="/about">
               About
             </Nav.Link>

@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import Badge from "react-bootstrap/Badge";
 import CardFooter from "react-bootstrap/esm/CardFooter";
 import ExpandedCard from "./ExpandedCard";
+import { EditEventButton } from "./EditEventButton";
 import { importLocationImages } from "../helper_functions/ImageMapping";
 
 function Box(props) {
@@ -40,14 +41,13 @@ function Box(props) {
             class="top_image"
             src={importLocationImages()[props.location][0]}
           />
-          {props.capacity-props.memberCount != 0 ? 
+          {props.showPrimaryButton ? 
           <Button variant="light" onClick={handleClick}>
             {props.buttonText}
           </Button> : <></>
           }
-          <Button className = "edit_button" variant="light">
-            Edit
-          </Button>
+          {props.edit ? 
+          <EditEventButton class="edit_button" eventId={props.id}/> : <></>}
           <Badge pill bg="light" text="dark">
             {props.memberCount} / {props.capacity}
           </Badge>

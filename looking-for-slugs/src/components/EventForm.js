@@ -2,15 +2,12 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
-import { firestoreCreateEvent } from "../firestoreHandler";
 import { auth } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import * as imageFuncs from "../helper_functions/ImageMapping";
+import { editPost } from "../firestoreHandler";
 
-function CreateEventModal(props) {
-  const [show, setShow] = useState(false);
+function EventForm(props) {
   const [validated, setValidated] = useState(false);
-  const [user, loading, error] = useAuthState(auth);
 
   const handleSubmit = (event) => {
     const form = document.querySelector("#event_form");
@@ -27,6 +24,7 @@ function CreateEventModal(props) {
           document.querySelector("#time").value +
           ":00"
       );
+      console.log(inputtedDate);
       let inputtedCapacity = document.querySelector("#capacity").value;
       let todayDate = new Date();
 
@@ -63,34 +61,27 @@ function CreateEventModal(props) {
         setValidated(true);
         return;
       }
-      setShow(false);
-      firestoreCreateEvent(
-        document.querySelector("#title").value,
-        document.querySelector("#time").value,
-        document.querySelector("#date").value,
-        document.querySelector("#location").value,
-        document.querySelector("#description").value,
-        document.querySelector("#capacity").value,
-        user.uid,
-        user.displayName
-      );
-      console.log("Submitted event to Firestore");
+      props.setShow(false);
+      props.onSubmit(
+        {eventTitle: document.querySelector("#title").value,
+        eventTime: document.querySelector("#time").value,
+        eventDate: document.querySelector("#date").value,
+        eventLocation: document.querySelector("#location").value,
+        eventDescription: document.querySelector("#description").value,
+        eventCapacity: document.querySelector("#capacity").value,
+        creatorId: auth.currentUser.uid,
+        creatorName: auth.currentUser.displayName,
+        eventId: props.eventId}
+      ); 
     }
 
     setValidated(true);
   };
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
-  const locationImages = imageFuncs.importLocationImages();
+  const handleClose = () => props.setShow(false);
 
   return (
     <>
-      <button className={props.class} onClick={handleShow}>
-        Create Event
-      </button>
-
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={props.show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Create Event</Modal.Title>
         </Modal.Header>
@@ -187,4 +178,4 @@ function CreateEventModal(props) {
   );
 }
 
-export default CreateEventModal;
+export default EventForm;

@@ -13,6 +13,7 @@ import {
   signIn,
   firestoreLeaveEvent,
 } from "../firestoreHandler";
+import { CreateEventButton } from "./CreateEventButton";
 
 function Discover() {
   const [user, loading, error] = useAuthState(auth);
@@ -65,7 +66,6 @@ function Discover() {
     };
 
     fetchData().then((firestoreAllEvents) => {
-      console.log(firestoreAllEvents);
       setEventsList(firestoreAllEvents);
     });
   }, [user]);
@@ -76,7 +76,7 @@ function Discover() {
       <div className="Discover_txt">
         <h1>Discover</h1>
         <button className="filter">Filter</button>
-        <CreateEventModal class="create-button" />
+        {user ? <CreateEventButton class="create-button" /> : <></>}
       </div>
       <div className="boxes">
         <Row>
@@ -103,6 +103,7 @@ function Discover() {
                 memberCount={events.joined.length}
                 members={events.joined}
                 capacity={events.capacity}
+                showPrimaryButton={events.joined.length - events.capacity == 0 ? false : true}
               ></Box>
             </Col>
           ))}

@@ -22,6 +22,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const provider = new GoogleAuthProvider();
+provider.setCustomParameters({ hd: "ucsc.edu" });
 const auth = getAuth(app);
 const db = getFirestore(app);
 
