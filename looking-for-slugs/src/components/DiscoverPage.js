@@ -92,7 +92,7 @@ function Discover() {
                 memberCount={events.joined.length}
                 members={events.joined}
                 capacity={events.capacity}
-                showPrimaryButton={events.joined.length - events.capacity == 0 || !user ? false : true}
+                showPrimaryButton={(events.joined.length - events.capacity == 0) && !(events.joined.includes(user.displayName)) || !user ? false : true}
               ></Box>
             </Col>
           ))}
