@@ -55,7 +55,7 @@ async function firestorePullEvents() {
       
         for (const doc of querySnapshot.docs) {
             const usersJoined = await getUsersJoinedEvent(doc.id);
-            const usernames = usersJoined.map(user => user.username);
+            const usernames = usersJoined.map(user => user.userDatasername);
             const event = { id: doc.id, ...doc.data(), joined: usernames };
             const eventDate = event.date.split("-") // [year, month, day]
             console.log("Event ", event.id, "'s date: ", eventDate);
@@ -81,6 +81,7 @@ async function firestorePullUserInfo(userId) {
         const userDoc = await getDoc(userRef);
         if (userDoc.exists()) {
             const userData = userDoc.data() || {};
+            console.log(userDoc.data());
             const joinedEvents = userData.joinedEvents || [];
             const createdEvents = userData.createdEvents || [];
             const joinedEventsDetails = await Promise.all(
