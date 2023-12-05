@@ -5,8 +5,7 @@ import Modal from "react-bootstrap/Modal";
 import { firestoreCreateEvent } from "../firestoreHandler";
 import { auth } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import * as imageFuncs from '../helper_functions/ImageMapping'
-
+import * as imageFuncs from "../helper_functions/ImageMapping";
 
 function CreateEventModal(props) {
   const [show, setShow] = useState(false);
@@ -22,16 +21,26 @@ function CreateEventModal(props) {
       event.stopPropagation();
     } else {
       //Check if date is in the past
-      let inputtedDate = new Date(document.querySelector("#date").value + "T" + document.querySelector("#time").value + ":00");
+      let inputtedDate = new Date(
+        document.querySelector("#date").value +
+          "T" +
+          document.querySelector("#time").value +
+          ":00"
+      );
       let inputtedCapacity = document.querySelector("#capacity").value;
       let todayDate = new Date();
 
       function isInt(value) {
-        return !isNaN(value) && (function(x) { return (x | 0) === x; })(parseFloat(value));
+        return (
+          !isNaN(value) &&
+          (function (x) {
+            return (x | 0) === x;
+          })(parseFloat(value))
+        );
       }
 
       if (isInt(inputtedCapacity) === true) {
-        if (Number(inputtedCapacity) < 0 ||  Number(inputtedCapacity) > 99) {
+        if (Number(inputtedCapacity) < 0 || Number(inputtedCapacity) > 99) {
           event.preventDefault();
           event.stopPropagation();
           document.querySelector("#capacity").value = "";
@@ -63,7 +72,7 @@ function CreateEventModal(props) {
         document.querySelector("#description").value,
         document.querySelector("#capacity").value,
         user.uid,
-        user.displayName 
+        user.displayName
       );
       console.log("Submitted event to Firestore");
     }
@@ -121,7 +130,7 @@ function CreateEventModal(props) {
             <Form.Group className="mb-3" controlId="location">
               <Form.Label>Location</Form.Label>
               <Form.Control required as="select" className="form-select">
-                <option value={''}>--Please Select a Location--</option>
+                <option value={""}>--Please Select a Location--</option>
                 <option>Rachel Carson College</option>
                 <option>Oakes College</option>
                 <option>Porter College</option>
@@ -152,8 +161,13 @@ function CreateEventModal(props) {
               </Form.Control.Feedback>
             </Form.Group>
             <Form.Group required className="mb-3" controlId="capacity">
-            <Form.Label>Capacity</Form.Label>
-              <Form.Control required type="capacity" placeholder="30" autoFocus />
+              <Form.Label>Capacity</Form.Label>
+              <Form.Control
+                required
+                type="capacity"
+                placeholder="30"
+                autoFocus
+              />
               <Form.Control.Feedback type="invalid">
                 Please name a capacity limit in between 0 - 99.
               </Form.Control.Feedback>

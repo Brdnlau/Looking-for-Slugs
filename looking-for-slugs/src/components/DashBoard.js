@@ -1,5 +1,5 @@
-import React, { useEffect} from "react";
-import { auth } from "../firebase"
+import React, { useEffect } from "react";
+import { auth } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 
@@ -7,29 +7,29 @@ import Profile from "./Profile";
 import NavbarForHome from "./Navbar";
 
 export default function Dashboard() {
-    const [user, loading, error] = useAuthState(auth);
-    const navigate = useNavigate();
+  const [user, loading, error] = useAuthState(auth);
+  const navigate = useNavigate();
 
-    useEffect(() => {
-        if (!user) 
-            navigate("/");
-      }, [user]);
-      
-    return (
+  useEffect(() => {
+    if (!user) navigate("/");
+  }, [user]);
+
+  return (
+    <>
+      {user === null ? (
         <>
-        {user === null ? 
-        <>
-            <div>
-                <NavbarForHome/>
-            </div>
-        </>:
-        <>
-            <div>
-                <NavbarForHome user={user}/>
-                <Profile user={user}/>
-            </div>
+          <div>
+            <NavbarForHome />
+          </div>
         </>
-        }
+      ) : (
+        <>
+          <div>
+            <NavbarForHome user={user} />
+            <Profile user={user} />
+          </div>
         </>
-    );
+      )}
+    </>
+  );
 }

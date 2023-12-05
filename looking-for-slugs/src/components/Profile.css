@@ -1,25 +1,25 @@
-.profile_pic{
-    padding-top: 30px;
-    border-radius: 50%;
-    margin: auto;
-    display: block;
+.profile_pic {
+  padding-top: 30px;
+  border-radius: 50%;
+  margin: auto;
+  display: block;
 }
 
-.user_name{
-    font-size: 30px;
-    text-align: center;
+.user_name {
+  font-size: 30px;
+  text-align: center;
 }
 
-.center{
-    text-align: center;
+.center {
+  text-align: center;
 }
 
 .Rows h1 {
-    border-bottom: 2px solid #442c34;
-    padding-bottom: 5px;
+  border-bottom: 2px solid #442c34;
+  padding-bottom: 5px;
 }
 
 .Rows {
-    margin-left: 20px;
-    margin-right: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
 }

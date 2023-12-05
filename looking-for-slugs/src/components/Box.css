@@ -1,51 +1,51 @@
 .box {
-    margin-top: 1vh;
-    margin-bottom: 2vh;
+  margin-top: 1vh;
+  margin-bottom: 2vh;
 }
-.margins{
-    margin-top: 1vh;
-    margin-bottom: 2vh;
+.margins {
+  margin-top: 1vh;
+  margin-bottom: 2vh;
 }
 
 .box-input {
-    padding-left: 1%;
+  padding-left: 1%;
 }
 
 .time {
-    font-family: "Times";
-    padding-bottom: -10px;
+  font-family: "Times";
+  padding-bottom: -10px;
 }
 
 .date {
-    font-family: "Times";
+  font-family: "Times";
 }
 
-.top_section{
-    position: relative;
-    max-height: 20vh;
-    overflow: hidden;
+.top_section {
+  position: relative;
+  max-height: 20vh;
+  overflow: hidden;
 }
 
 .top_section button {
-    position: absolute;
-    top: 5px;
-    right: 5px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
 }
 
 .top_section span {
-    position: absolute;
-    bottom: 5px;
-    right: 5px;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
 }
 
-.bold{
-    font-weight: bold;
+.bold {
+  font-weight: bold;
 }
 
 .top_image {
-    width:100%;
-    min-height:12em;
-    max-width: 100%;
-    height: auto;
-    width: auto\9;
+  width: 100%;
+  min-height: 12em;
+  max-width: 100%;
+  height: auto;
+  width: auto\9;
 }

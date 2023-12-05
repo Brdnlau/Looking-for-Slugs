@@ -1,53 +1,53 @@
 .Discover_txt {
-    display: flex;
-    text-align: left;
-    padding-left: 2%;
-    font-size: 40px;
+  display: flex;
+  text-align: left;
+  padding-left: 2%;
+  font-size: 40px;
 }
 
 .filter {
-    font-size: 1rem;
-    margin-left: 20px;
-    background-color: #9bc400;
-    color:#442c34;
-    border: 1px solid #442c34;
-    font-family: "Habibi";
-    height: 30px;
-    margin-top: 12px
+  font-size: 1rem;
+  margin-left: 20px;
+  background-color: #9bc400;
+  color: #442c34;
+  border: 1px solid #442c34;
+  font-family: "Habibi";
+  height: 30px;
+  margin-top: 12px;
 }
 
-.Discover_txt h1{
-    border-bottom: 2px solid #442c34;
-    padding-bottom: 5px;
+.Discover_txt h1 {
+  border-bottom: 2px solid #442c34;
+  padding-bottom: 5px;
 }
 
 .boxes {
-    margin: 0 auto;
-    width: 95%;
+  margin: 0 auto;
+  width: 95%;
 }
 
 .buttons-container {
-    display: flex;
-    justify-content: space-around;
-    padding: 0 10px 10px 0;
-    background-color: #fff5d7;
+  display: flex;
+  justify-content: space-around;
+  padding: 0 10px 10px 0;
+  background-color: #fff5d7;
 }
 
 .buttons-container button {
-    margin: 10px 0 0 10px;
-    width: 100%;
-    height: 30px;
-    background-color: #9bc400;
-    user-select: none;
-    border: 1px solid #442c34;
-    font-family: "Habibi"
+  margin: 10px 0 0 10px;
+  width: 100%;
+  height: 30px;
+  background-color: #9bc400;
+  user-select: none;
+  border: 1px solid #442c34;
+  font-family: "Habibi";
 }
 
 .create-button {
-    background-color: #9bc400;
-    border: 1px solid #442c34;
-    margin: 12px 0 0 10px;
-    font-family: "Habibi";
-    height: 30px;
-    font-size: 17px;
+  background-color: #9bc400;
+  border: 1px solid #442c34;
+  margin: 12px 0 0 10px;
+  font-family: "Habibi";
+  height: 30px;
+  font-size: 17px;
 }

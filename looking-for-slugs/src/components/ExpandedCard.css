@@ -1,15 +1,15 @@
-.remove_padding{
-    margin-bottom: 0px;
+.remove_padding {
+  margin-bottom: 0px;
 }
 
-.expand_div:hover{
-    cursor: pointer;
+.expand_div:hover {
+  cursor: pointer;
 }
 
 .map iframe {
-    max-width: 100%;
-    width: 100%;
-    height: auto;
-    width: auto\9;
-    min-height: 50vh;
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  width: auto\9;
+  min-height: 50vh;
 }

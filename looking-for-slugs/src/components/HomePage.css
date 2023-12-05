@@ -1,72 +1,69 @@
 .split-parent {
-    display: flex;
-    margin: 0 auto;
-    width: 95%
-  }
+  display: flex;
+  margin: 0 auto;
+  width: 95%;
+}
 
 .split {
-    flex: 1;
-    /*border: 2px solid red;*/
-    padding-top: 5em;
+  flex: 1;
+  /*border: 2px solid red;*/
+  padding-top: 5em;
 }
 
 .split:first-child {
-    margin-right: 20px;
-} 
-
-
-@media (max-width: 767px) {
-    .split-parent {
-        width: auto;
-        flex-direction: column;
-    }
-    .split:first-child {
-        margin-right: 0px;
-    } 
-    
+  margin-right: 20px;
 }
 
-.split h1{
-    text-align: center;
-    width: 65%;
-    margin: 0 auto;
-    padding-bottom: .5em;
-    font-size:calc(12px + 1.5vw);
-    padding: auto 2em auto 5em;
-    font-weight: lighter;
+@media (max-width: 767px) {
+  .split-parent {
+    width: auto;
+    flex-direction: column;
+  }
+  .split:first-child {
+    margin-right: 0px;
+  }
+}
+
+.split h1 {
+  text-align: center;
+  width: 65%;
+  margin: 0 auto;
+  padding-bottom: 0.5em;
+  font-size: calc(12px + 1.5vw);
+  padding: auto 2em auto 5em;
+  font-weight: lighter;
 }
 
 .line {
-    display: flex;
-    border-top: 0.25vh solid #442c34;
-    width: 80%;
-    margin: 0 auto;
+  display: flex;
+  border-top: 0.25vh solid #442c34;
+  width: 80%;
+  margin: 0 auto;
 }
 
-.split p{
-    text-align: justify;
-    width: 65%;
-    margin: 0 auto;
-    font-size:calc(10px + 1vw);
-    padding-top: 1em;
+.split p {
+  text-align: justify;
+  width: 65%;
+  margin: 0 auto;
+  font-size: calc(10px + 1vw);
+  padding-top: 1em;
 }
 
 .loginbutton {
-    display: flex;
-    text-align: center;
-    background-color: #9bc400;
-    font-size:calc(12px + 1.5vw);
-    margin: 1em auto;
-    color: #442c34;
-    border: 0px;
-    border-radius: 5%;
-    font-family: "Habibi";
-    padding: 0.3em 3em 0.3em 3em;
-    
+  display: flex;
+  text-align: center;
+  background-color: #9bc400;
+  font-size: calc(12px + 1.5vw);
+  margin: 1em auto;
+  color: #442c34;
+  border: 0px;
+  border-radius: 5%;
+  font-family: "Habibi";
+  padding: 0.3em 3em 0.3em 3em;
 }
 
 .split-parent img {
-    max-width: 100%;
-    height: auto;
-    width: auto\9;
-  }
+  max-width: 100%;
+  height: auto;
+  width: auto\9;
+}
