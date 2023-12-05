@@ -4,17 +4,17 @@ import Row from "react-bootstrap/esm/Row";
 import "./Profile.css";
 import Card from "react-bootstrap/Card";
 import Box from "./Box.js";
-import ListGroup from "react-bootstrap/ListGroup";
 import {
   firestorePullUserInfo,
   fireStoreDeleteEvent,
   firestoreLeaveEvent,
 } from "../firestoreHandler.js";
+import { importLocationImages } from "../helper_functions/ImageMapping.js";
 
 export default function Profile(props) {
   const [joinedEvents, setJoinedEvents] = useState("LOADING EVENTS");
   const [createdEvents, setCreatedEvents] = useState("LOADING EVENTS");
-
+  const locationImages = importLocationImages();
   const user = props.user;
 
   function handleDeleteEvent(docID) {
@@ -59,6 +59,8 @@ export default function Profile(props) {
             members={events.joined}
             capacity={events.capacity}
             showPrimaryButton={true}
+            image={locationImages[events.location][0]}
+            map={locationImages[events.location][1]}
             ></Box>
         ))
       );
@@ -79,6 +81,8 @@ export default function Profile(props) {
             capacity={events.capacity}
             edit={true}
             showPrimaryButton={true}
+            image={locationImages[events.location][0]}
+            map={locationImages[events.location][1]}
           ></Box>
         ))
       );
