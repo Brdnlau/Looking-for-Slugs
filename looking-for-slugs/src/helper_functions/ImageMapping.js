@@ -196,6 +196,17 @@ export function importLocationImages() {
         referrerpolicy="no-referrer-when-downgrade"
       ></iframe>,
     ];
+    result["Cowell College"] = [
+      result["Cowell College"],
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3186.5312092536533!2d-122.05684372415256!3d36.99712167219169!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808e41a6c19bff69%3A0x6a5c2942c4118cf0!2sCowell%20College!5e0!3m2!1sen!2sus!4v1701816457526!5m2!1sen!2sus"
+        width="600"
+        height="450"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>,
+    ];
     return result;
   }
 
