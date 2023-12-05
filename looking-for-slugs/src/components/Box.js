@@ -1,13 +1,10 @@
 import React from "react";
 import "./Box.css";
 import Card from "react-bootstrap/Card";
-import fillerImage from "../components/images/filler_image.jpg";
 import Button from "react-bootstrap/Button";
 import Badge from "react-bootstrap/Badge";
-import CardFooter from "react-bootstrap/esm/CardFooter";
 import ExpandedCard from "./ExpandedCard";
 import { EditEventButton } from "./EditEventButton";
-import { importLocationImages } from "../helper_functions/ImageMapping";
 
 function Box(props) {
   function handleClick() {
@@ -39,7 +36,7 @@ function Box(props) {
           <Card.Img
             variant="top"
             class="top_image"
-            src={importLocationImages()[props.location][0]}
+            src={props.image}
           />
           {props.showPrimaryButton ? 
           <Button variant="light" onClick={handleClick}>
@@ -84,8 +81,8 @@ function Box(props) {
             content={props.content}
             members={props.members}
             organizer={props.organizer}
-            image={importLocationImages()[props.location][0]}
-            map={importLocationImages()[props.location][1]}
+            image={props.image}
+            map={props.map}
           />
         </Card.Footer>
       </Card>

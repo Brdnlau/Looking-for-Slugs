@@ -18,6 +18,7 @@ import { importLocationImages } from "../helper_functions/ImageMapping";
 function Discover() {
   const [user] = useAuthState(auth);
   const [eventsList, setEventsList] = useState([]);
+  const locationImages = importLocationImages();
 
   function handleJoinEvent(docID) {
     if (firestoreAddUserToEvent(user.uid, docID)) {
@@ -54,11 +55,10 @@ function Discover() {
     const fetchData = async () => {
       return await firestorePullEvents();
     };
-
     fetchData().then((firestoreAllEvents) => {
       setEventsList(firestoreAllEvents);
     });
-  }, [user]);
+  }, []);
 
   return (
     <div>
@@ -94,6 +94,8 @@ function Discover() {
                 members={events.joined}
                 capacity={events.capacity}
                 showPrimaryButton={!user || (events.joined.length - events.capacity == 0) && !(events.joined.includes(user.displayName))? false : true}
+                image={locationImages[events.location][0]}
+                map={locationImages[events.location][1]}
               ></Box>
             </Col>
           ))}
