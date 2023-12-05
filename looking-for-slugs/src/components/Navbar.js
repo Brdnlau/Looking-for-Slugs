@@ -5,9 +5,7 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import LoginButton from "./LoginButton";
 import { Link } from "react-router-dom";
-import CreateEventModal from "./create_event_modal";
 import ProfileDropdown from "./ProfileDropdown";
-import { CreateEventButton } from "./CreateEventButton";
 
 function NavbarForHome(props) {
   return (

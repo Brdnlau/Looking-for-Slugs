@@ -4,7 +4,6 @@ import NavbarHome from "./Navbar";
 import Box from "./Box";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import CreateEventModal from "./create_event_modal";
 import { auth } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import {
@@ -16,30 +15,20 @@ import {
 import { CreateEventButton } from "./CreateEventButton";
 
 function Discover() {
-  const [user, loading, error] = useAuthState(auth);
+  const [user] = useAuthState(auth);
   const [eventsList, setEventsList] = useState([]);
 
   function handleJoinEvent(docID) {
-    if (!user) {
-      signIn().then((newUser) => {
-        if (firestoreAddUserToEvent(newUser.uid, docID)) {
-          setEventsList();
-        } else {
-          alert("Error joining Event");
-        }
-      });
+    if (firestoreAddUserToEvent(user.uid, docID)) {
+    setEventsList((prevEventsList) =>
+        prevEventsList.map((event) =>
+        event.id === docID
+            ? { ...event, joined: [user.displayName, ...event.joined] }
+            : event
+        )
+    );
     } else {
-      if (firestoreAddUserToEvent(user.uid, docID)) {
-        setEventsList((prevEventsList) =>
-          prevEventsList.map((event) =>
-            event.id === docID
-              ? { ...event, joined: [user.displayName, ...event.joined] }
-              : event
-          )
-        );
-      } else {
         alert("Error joining Event");
-      }
     }
   }
 
@@ -103,7 +92,7 @@ function Discover() {
                 memberCount={events.joined.length}
                 members={events.joined}
                 capacity={events.capacity}
-                showPrimaryButton={events.joined.length - events.capacity == 0 ? false : true}
+                showPrimaryButton={events.joined.length - events.capacity == 0 || !user ? false : true}
               ></Box>
             </Col>
           ))}
