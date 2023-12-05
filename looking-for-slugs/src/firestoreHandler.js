@@ -59,7 +59,11 @@ async function firestorePullEvents() {
             const event = { id: doc.id, ...doc.data(), joined: usernames };
             const eventDate = event.date.split("-") // [year, month, day]
             console.log("Event ", event.id, "'s date: ", eventDate);
-            if( todayYear > eventDate[0] || ( todayMonth == eventDate[1] && todayDate > eventDate[2] ) || todayMonth >= eventDate[1]) {
+            if( todayYear > eventDate[0] || ( todayMonth == eventDate[1] && todayDate > eventDate[2] ) || todayMonth > eventDate[1]) {
+                const JoinedUserIdList = getUsersJoinedEvent(event.id);
+                for (let i = 0; i < JoinedUserIdList.length; i++){
+                    firestoreLeaveEvent(usersJoined[i].id, event.id)
+                }
                 console.log("Event ", event.id, " has expired. Thus, deleted");
                 fireStoreDeleteEvent(event.id);
             }
