@@ -6,14 +6,14 @@
 }
 
 .filter {
-  font-size: 1rem;
+  font-size: 17px;
+  margin-top: 24px;
   margin-left: 20px;
   background-color: #9bc400;
   color: #442c34;
   border: 1px solid #442c34;
   font-family: "Habibi";
   height: 30px;
-  margin-top: 12px;
 }
 
 .Discover_txt h1 {
@@ -24,13 +24,6 @@
 .boxes {
   margin: 0 auto;
   width: 95%;
-}
-
-.buttons-container {
-  display: flex;
-  justify-content: space-around;
-  padding: 0 10px 10px 0;
-  background-color: #fff5d7;
 }
 
 .buttons-container button {
