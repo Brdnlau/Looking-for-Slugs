@@ -40,9 +40,11 @@ function Box(props) {
             class="top_image"
             src={importLocationImages()[props.location][0]}
           />
+          {props.capacity-props.memberCount != 0 ? 
           <Button variant="light" onClick={handleClick}>
             {props.buttonText}
-          </Button>
+          </Button> : <></>
+          }
           <Button className = "edit_button" variant="light">
             Edit
           </Button>

@@ -31,9 +31,11 @@ function NavbarForHome(props) {
             <Nav.Link eventKey={3} as={Link} to="/discover">
               Discover
             </Nav.Link>
+            {props.user ? 
             <Nav.Link>
               <CreateEventModal class="event_creation_button" />
-            </Nav.Link>
+            </Nav.Link> : <></>
+            }
             <Nav.Link eventKey={5} as={Link} to="/about">
               About
             </Nav.Link>

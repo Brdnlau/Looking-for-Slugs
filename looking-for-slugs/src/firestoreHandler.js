@@ -90,6 +90,8 @@ async function firestorePullUserInfo(userId) {
                     const eventDoc = await getDoc(eventRef);
                     if (eventDoc.exists()) {
                         const eventData = eventDoc.data() || {};
+                        const usersJoined = await getUsersJoinedEvent(eventId);
+                        const usernames = usersJoined.map(user => user.userDatasername);
                         return {
                             id: eventId,
                             title: eventData.title,
@@ -98,7 +100,7 @@ async function firestorePullUserInfo(userId) {
                             location: eventData.location,
                             description: eventData.description,
                             capacity: eventData.capacity,
-                            joined: eventData.joined || [],
+                            joined: usernames || [],
                             creatorID: eventData.creatorID,
                             creatorName: eventData.creatorName,
                         };
@@ -112,6 +114,8 @@ async function firestorePullUserInfo(userId) {
                     const eventDoc = await getDoc(eventRef);
                     if (eventDoc.exists()) {
                         const eventData = eventDoc.data() || {};
+                        const usersJoined = await getUsersJoinedEvent(eventId);
+                        const usernames = usersJoined.map(user => user.userDatasername);
                         return {
                             id: eventId,
                             title: eventData.title,
@@ -120,7 +124,7 @@ async function firestorePullUserInfo(userId) {
                             location: eventData.location,
                             description: eventData.description,
                             capacity: eventData.capacity,
-                            joined: eventData.joined || [],
+                            joined: usernames || [],
                             creatorID: eventData.creatorID,
                             creatorName: eventData.creatorName,
                         };
