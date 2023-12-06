@@ -1,9 +1,7 @@
 import "./Navbar.css";
-import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import LoginButton from "./LoginButton";
+import LoginButton from "../Buttons/LoginButton";
 import { Link } from "react-router-dom";
 import ProfileDropdown from "./ProfileDropdown";
 
@@ -15,7 +13,7 @@ function NavbarForHome(props) {
           Looking For Slugs{" "}
           <img
             className="logo_nav"
-            src={require("../components/images/lfs.png")}
+            src={require("../images/lfs.png")}
             width="60"
             height="50"
           />

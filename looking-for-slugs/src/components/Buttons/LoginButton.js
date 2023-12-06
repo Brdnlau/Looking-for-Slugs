@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { signIn } from "../firestoreHandler";
+import { signIn } from "../../Firebase/firestoreHandler";
 
 export default function LoginButton(props) {
   const navigate = useNavigate();

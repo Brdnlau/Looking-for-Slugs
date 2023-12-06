@@ -1,12 +1,12 @@
 import React from "react";
 import "./AboutPage.css";
-import NavbarHome from "./Navbar";
+import NavbarHome from "../../Navbar/Navbar";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/esm/Row";
-import teamworkImg from "../components/images/about_page_images/teamwork.jpg";
-import brainstormImg from "../components/images/about_page_images/brainstorm.jpg";
-import teamImg from "../components/images/about_page_images/team.jpg";
-import { auth } from "../firebase";
+import teamworkImg from "../../images/about_page_images/teamwork.jpg"
+import brainstormImg from "../../images/about_page_images/brainstorm.jpg";
+import teamImg from "../../images/about_page_images/team.jpg";
+import { auth } from "../../../Firebase/firebase";
 
 function AboutPage() {
   return (

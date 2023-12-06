@@ -1,6 +1,6 @@
 import { useState } from "react";
-import EventForm from "./EventForm";
-import { firestoreCreateEvent } from "../firestoreHandler";
+import EventForm from "../Forms/EventForm";
+import { firestoreCreateEvent } from "../../Firebase/firestoreHandler";
 
 export function CreateEventButton(props) {
     const [show, setShow] = useState(false)

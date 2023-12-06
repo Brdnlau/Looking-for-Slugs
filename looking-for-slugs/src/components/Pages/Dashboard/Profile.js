@@ -3,13 +3,13 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/esm/Row";
 import "./Profile.css";
 import Card from "react-bootstrap/Card";
-import Box from "./Box.js";
+import Box from "../../Box/Box.js";
 import {
   firestorePullUserInfo,
   fireStoreDeleteEvent,
   firestoreLeaveEvent,
-} from "../firestoreHandler.js";
-import { importLocationImages } from "../helper_functions/ImageMapping.js";
+} from "../../../Firebase/firestoreHandler.js";
+import { importLocationImages } from "../../../helper_functions/ImageMapping.js";
 
 export default function Profile(props) {
   const [joinedEvents, setJoinedEvents] = useState("LOADING EVENTS");

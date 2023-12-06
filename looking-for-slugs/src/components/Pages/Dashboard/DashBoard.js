@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import { auth } from "../firebase";
+import { auth } from "../../../Firebase/firebase";
 import { useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 import Profile from "./Profile";
-import NavbarForHome from "./Navbar";
+import NavbarForHome from "../../Navbar/Navbar";
 
 export default function Dashboard() {
   const [user, loading, error] = useAuthState(auth);

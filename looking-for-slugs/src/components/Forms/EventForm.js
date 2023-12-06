@@ -2,9 +2,9 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
-import { auth } from "../firebase";
+import { auth } from "../../Firebase/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { editPost } from "../firestoreHandler";
+import { editPost } from "../../Firebase/firestoreHandler";
 
 function EventForm(props) {
   const [validated, setValidated] = useState(false);

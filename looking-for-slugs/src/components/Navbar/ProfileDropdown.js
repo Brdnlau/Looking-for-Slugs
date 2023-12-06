@@ -1,5 +1,5 @@
 import React from "react";
-import { auth } from "../firebase";
+import { auth } from "../../Firebase/firebase";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";

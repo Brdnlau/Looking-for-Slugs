@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
-import EventForm from "./EventForm";
-import { editPost } from "../firestoreHandler";
+import EventForm from "../Forms/EventForm";
+import { editPost } from "../../Firebase/firestoreHandler";
 
 export function EditEventButton(props) {
     const [show, setShow] = useState(false)

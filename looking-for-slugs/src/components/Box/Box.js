@@ -4,7 +4,7 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Badge from "react-bootstrap/Badge";
 import ExpandedCard from "./ExpandedCard";
-import { EditEventButton } from "./EditEventButton";
+import { EditEventButton } from "../Buttons/EditEventButton";
 
 function Box(props) {
   function handleClick() {

@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
 import "./DiscoverPage.css";
-import NavbarHome from "./Navbar";
-import Box from "./Box";
+import NavbarHome from "../../Navbar/Navbar";
+import Box from "../../Box/Box";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { auth } from "../firebase";
+import { auth } from "../../../Firebase/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import {
   firestorePullEvents,
   firestoreAddUserToEvent,
   signIn,
   firestoreLeaveEvent,
-} from "../firestoreHandler";
-import { CreateEventButton } from "./CreateEventButton";
-import { importLocationImages } from "../helper_functions/ImageMapping";
+} from "../../../Firebase/firestoreHandler";
+import { CreateEventButton } from "../../Buttons/CreateEventButton";
+import { importLocationImages } from "../../../helper_functions/ImageMapping";
 
 function Discover() {
   const [user] = useAuthState(auth);

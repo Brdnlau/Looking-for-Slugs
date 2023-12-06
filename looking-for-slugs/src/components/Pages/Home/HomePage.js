@@ -1,9 +1,9 @@
 import React from "react";
-import customIcon from "../components/images/flippedLFS.png";
+import customIcon from "../../images/flippedLFS.png";
 import "./HomePage.css";
-import LoginButton from "./LoginButton";
-import NavbarHome from "./Navbar";
-import { auth } from "../firebase";
+import LoginButton from "../../Buttons/LoginButton";
+import NavbarHome from "../../Navbar/Navbar";
+import { auth } from "../../../Firebase/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 

@@ -3,7 +3,6 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import "./ExpandedCard.css";
 import Card from "react-bootstrap/Card";
-import fillerImage from "../components/images/filler_image.jpg";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 

@@ -1,4 +1,4 @@
-import { auth } from "./firebase";
+import { auth } from "./firebase.js";
 import { signInWithPopup } from "firebase/auth";
 import {
   doc,

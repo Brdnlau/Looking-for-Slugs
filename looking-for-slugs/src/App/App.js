@@ -8,10 +8,10 @@ import {
   Navigate,
 } from "react-router-dom";
 
-import HomePage from './components/HomePage';
-import Dashboard from './components/DashBoard';
-import Discovery from './components/DiscoverPage';
-import AboutPage from './components/AboutPage';
+import HomePage from '../components/Pages/Home/HomePage';
+import Dashboard from '../components/Pages/Dashboard/DashBoard';
+import Discovery from '../components/Pages/Discover/DiscoverPage';
+import AboutPage from '../components/Pages/About/AboutPage';
 
 function App() {
   return (
