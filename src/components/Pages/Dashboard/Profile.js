@@ -43,7 +43,7 @@ export default function Profile(props) {
     };
 
     fetchData().then((userInfo) => {
-      if (!userInfo){
+      if (!userInfo) {
         return;
       }
       setJoinedEvents(
@@ -64,7 +64,7 @@ export default function Profile(props) {
             showPrimaryButton={true}
             image={locationImages[events.location][0]}
             map={locationImages[events.location][1]}
-            ></Box>
+          ></Box>
         ))
       );
       setCreatedEvents(
