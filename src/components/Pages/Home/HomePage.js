@@ -8,7 +8,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 
 function HomePage() {
-  const [user, loading, error] = useAuthState(auth);
+  const [user] = useAuthState(auth);
   const navigate = useNavigate();
   if (user) {
     navigate("/dashboard");

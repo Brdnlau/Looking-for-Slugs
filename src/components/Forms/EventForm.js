@@ -3,8 +3,6 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { auth } from "../../Firebase/firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { editPost } from "../../Firebase/firestoreHandler";
 
 function EventForm(props) {
   const [validated, setValidated] = useState(false);
@@ -24,7 +22,6 @@ function EventForm(props) {
           document.querySelector("#time").value +
           ":00"
       );
-      console.log(inputtedDate);
       let inputtedCapacity = document.querySelector("#capacity").value;
       let todayDate = new Date();
 
@@ -83,7 +80,7 @@ function EventForm(props) {
     <>
       <Modal show={props.show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Create Event</Modal.Title>
+          <Modal.Title>{props.title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form

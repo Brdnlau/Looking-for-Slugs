@@ -11,7 +11,7 @@ export function EditEventButton(props) {
     return (
         <div>
             <Button variant="light" className={props.class} onClick={handleClick}>Edit</Button>
-            <EventForm setShow={setShow} show={show} onSubmit={editPost} eventId={props.eventId}/>
+            <EventForm setShow={setShow} show={show} onSubmit={editPost} eventId={props.eventId} title="Edit Event"/>
         </div>
     );
 }

@@ -10,7 +10,7 @@ export function CreateEventButton(props) {
     return (
         <div>
             <button variant="light" className={props.class} onClick={handleClick}>Create Event</button>
-            <EventForm setShow={setShow} show={show} onSubmit={firestoreCreateEvent}/>
+            <EventForm setShow={setShow} show={show} onSubmit={firestoreCreateEvent} title="Create Event"/>
         </div>
     );
 }

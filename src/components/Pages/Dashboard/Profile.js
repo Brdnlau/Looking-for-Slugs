@@ -12,8 +12,8 @@ import {
 import { importLocationImages } from "../../../helper_functions/ImageMapping.js";
 
 export default function Profile(props) {
-  const [joinedEvents, setJoinedEvents] = useState("LOADING EVENTS");
-  const [createdEvents, setCreatedEvents] = useState("LOADING EVENTS");
+  const [joinedEvents, setJoinedEvents] = useState("");
+  const [createdEvents, setCreatedEvents] = useState("");
   const locationImages = importLocationImages();
   const user = props.user;
 
@@ -43,6 +43,9 @@ export default function Profile(props) {
     };
 
     fetchData().then((userInfo) => {
+      if (!userInfo){
+        return;
+      }
       setJoinedEvents(
         userInfo.joinedEvents.map((events) => (
           <Box

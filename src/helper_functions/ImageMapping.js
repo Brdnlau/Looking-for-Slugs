@@ -22,7 +22,7 @@ export function importLocationImages() {
   function importAll(r) {
     let images = {};
     r.keys().map((item, index) => {
-      images[item.replace("./", "")] = r(item);
+      return images[item.replace("./", "")] = r(item);
     });
     let dictVal = [];
     dictVal = Object.keys(images).map((key) => images[key]);
@@ -39,6 +39,7 @@ export function importLocationImages() {
         height="450"
         allowfullscreen=""
         loading="lazy"
+        title="RCC Map"
         referrerpolicy="no-referrer-when-downgrade"
       ></iframe>,
     ];
@@ -50,6 +51,7 @@ export function importLocationImages() {
         height="450"
         allowfullscreen=""
         loading="lazy"
+        title="Oakes Map"
         referrerpolicy="no-referrer-when-downgrade"
       ></iframe>,
     ];
@@ -61,6 +63,7 @@ export function importLocationImages() {
         height="450"
         allowfullscreen=""
         loading="lazy"
+        title="Porter Map"
         referrerpolicy="no-referrer-when-downgrade"
       ></iframe>,
     ];
@@ -72,6 +75,7 @@ export function importLocationImages() {
         height="450"
         allowfullscreen=""
         loading="lazy"
+        title="Kresge Map"
         referrerpolicy="no-referrer-when-downgrade"
       ></iframe>,
     ];
@@ -83,6 +87,7 @@ export function importLocationImages() {
         height="450"
         allowfullscreen=""
         loading="lazy"
+        title="Merrill Map"
         referrerpolicy="no-referrer-when-downgrade"
       ></iframe>,
     ];
@@ -94,6 +99,7 @@ export function importLocationImages() {
         height="450"
         allowfullscreen=""
         loading="lazy"
+        title="C9 Map"
         referrerpolicy="no-referrer-when-downgrade"
       ></iframe>,
     ];
@@ -105,6 +111,7 @@ export function importLocationImages() {
         height="450"
         allowfullscreen=""
         loading="lazy"
+        title="JRL Map"
         referrerpolicy="no-referrer-when-downgrade"
       ></iframe>,
     ];
@@ -116,6 +123,7 @@ export function importLocationImages() {
         height="450"
         allowfullscreen=""
         loading="lazy"
+        title="East Field Map"
         referrerpolicy="no-referrer-when-downgrade"
       ></iframe>,
     ];
@@ -127,6 +135,7 @@ export function importLocationImages() {
         height="450"
         allowfullscreen=""
         loading="lazy"
+        title="West Field Map"
         referrerpolicy="no-referrer-when-downgrade"
       ></iframe>,
     ];
@@ -138,6 +147,7 @@ export function importLocationImages() {
         height="450"
         allowfullscreen=""
         loading="lazy"
+        title="McHenry Map"
         referrerpolicy="no-referrer-when-downgrade"
       ></iframe>,
     ];
@@ -149,6 +159,7 @@ export function importLocationImages() {
         height="450"
         allowfullscreen=""
         loading="lazy"
+        title="SNE Map"
         referrerpolicy="no-referrer-when-downgrade"
       ></iframe>,
     ];
@@ -160,6 +171,7 @@ export function importLocationImages() {
         height="450"
         allowfullscreen=""
         loading="lazy"
+        title="Stevenson Map"
         referrerpolicy="no-referrer-when-downgrade"
       ></iframe>,
     ];
@@ -171,6 +183,7 @@ export function importLocationImages() {
         height="450"
         allowfullscreen=""
         loading="lazy"
+        title="Porter Meadow Map"
         referrerpolicy="no-referrer-when-downgrade"
       ></iframe>,
     ];
@@ -182,6 +195,7 @@ export function importLocationImages() {
         height="450"
         allowfullscreen=""
         loading="lazy"
+        title="Crown Map"
         referrerpolicy="no-referrer-when-downgrade"
       ></iframe>,
     ];
@@ -193,6 +207,7 @@ export function importLocationImages() {
         height="450"
         allowfullscreen=""
         loading="lazy"
+        title="Stevenson Map"
         referrerpolicy="no-referrer-when-downgrade"
       ></iframe>,
     ];
@@ -204,6 +219,7 @@ export function importLocationImages() {
         height="450"
         allowfullscreen=""
         loading="lazy"
+        title="Cowell Map"
         referrerpolicy="no-referrer-when-downgrade"
       ></iframe>,
     ];

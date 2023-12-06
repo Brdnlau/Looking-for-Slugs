@@ -21,7 +21,7 @@ export default function ProfileDropdown(props) {
   return (
     <div>
       <div class="drop_elements">
-        <img src={props.user.photoURL} class="drop_profile_pic" />
+        <img src={props.user.photoURL} class="drop_profile_pic" alt="user"/>
       </div>
       <div class="drop_elements">
         <DropdownButton

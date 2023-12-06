@@ -9,7 +9,6 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import {
   firestorePullEvents,
   firestoreAddUserToEvent,
-  signIn,
   firestoreLeaveEvent,
 } from "../../../Firebase/firestoreHandler";
 import { CreateEventButton } from "../../Buttons/CreateEventButton";
@@ -93,7 +92,7 @@ function Discover() {
                 memberCount={events.joined.length}
                 members={events.joined}
                 capacity={events.capacity}
-                showPrimaryButton={!user || (events.joined.length - events.capacity == 0) && !(events.joined.includes(user.displayName))? false : true}
+                showPrimaryButton={!user || ((events.joined.length - events.capacity === 0) && !(events.joined.includes(user.displayName)))? false : true}
                 image={locationImages[events.location][0]}
                 map={locationImages[events.location][1]}
               ></Box>

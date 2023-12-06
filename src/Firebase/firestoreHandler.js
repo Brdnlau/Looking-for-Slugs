@@ -24,7 +24,6 @@ async function firestoreCreateEvent({
   creatorName,
 }) {
   // Added creatorId field to store eventcreator Id.
-  //granger
   try {
     console.log("Firestore: ", db);
   } catch (e) {
@@ -64,11 +63,6 @@ async function firestorePullEvents() {
     const eventsCollection = collection(db, "eventPosts");
     const querySnapshot = await getDocs(eventsCollection);
     const firestoreEvents = [];
-    const newDate = new Date();
-    const todayDate = newDate.getDate();
-    const todayMonth = newDate.getMonth() + 1; // January is 0, not 1
-    const todayYear = newDate.getFullYear();
-    // console.log("Today's date: Month: ", todayMonth, " Date: ", todayDate, " Year: ", todayYear);
 
     for (const doc of querySnapshot.docs) {
       const usersJoined = await getUsersJoinedEvent(doc.id);
@@ -96,7 +90,6 @@ async function firestorePullUserInfo(userId) {
     const userDoc = await getDoc(userRef);
     if (userDoc.exists()) {
       const userData = userDoc.data() || {};
-      console.log(userDoc.data());
       const joinedEvents = userData.joinedEvents || [];
       const createdEvents = userData.createdEvents || [];
       const joinedEventsDetails = await Promise.all(

@@ -76,13 +76,13 @@ function AboutPage() {
       </Row>
       <Row className="Rows about_images">
         <Col sm={4}>
-          <img src={teamworkImg}></img>
+          <img src={teamworkImg} alt="teamwork"></img>
         </Col>
         <Col sm={4}>
-          <img src={brainstormImg}></img>
+          <img src={brainstormImg} alt="brainstorm"></img>
         </Col>
         <Col sm={4}>
-          <img src={teamImg}></img>
+          <img src={teamImg} alt="team"></img>
         </Col>
       </Row>
     </div>

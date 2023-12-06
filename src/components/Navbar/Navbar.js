@@ -16,6 +16,7 @@ function NavbarForHome(props) {
             src={require("../images/lfs.png")}
             width="60"
             height="50"
+            alt="lfs logo"
           />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
