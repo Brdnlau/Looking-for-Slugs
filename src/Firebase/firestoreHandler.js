@@ -74,14 +74,9 @@ async function firestorePullEvents() {
       const usersJoined = await getUsersJoinedEvent(doc.id);
       const usernames = usersJoined.map((user) => user.userDatasername);
       const event = { id: doc.id, ...doc.data(), joined: usernames };
-      const eventDate = event.date.split("-"); // [year, month, day]
-      //console.log("Event ", event.id, "'s date: ", eventDate);
-      if (
-        todayYear > eventDate[0] ||
-        (todayYear >= eventDate[0] &&
-          ((todayMonth == eventDate[1] && todayDate > eventDate[2]) ||
-            todayMonth > eventDate[1]))
-      ) {
+      let inputtedDate = new Date(event.date + "T" + event.time +":00");
+      let todayDate = new Date();
+      if (inputtedDate < todayDate || inputtedDate === todayDate) {
         console.log("Event ", event.id, " has expired. Thus, deleted");
         fireStoreDeleteEvent(event.id);
       } else {
