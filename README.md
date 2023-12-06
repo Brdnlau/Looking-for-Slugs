@@ -2,7 +2,7 @@
 Looking for Slugs (LFS) allows you to seamlessly view and create sport events. You can become an organizer and create and monitor your own events, or become an attendee, someone looking to get into a game.
 
 ## How to install and run the project
-To run the project, access the directory \looking-for-slugs and run
+To install dependencies, run
 ```
 npm install
 ```
